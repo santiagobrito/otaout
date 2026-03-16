@@ -17,8 +17,8 @@ const config: Config = {
         border: "rgba(255,255,255,0.08)",
       },
       fontFamily: {
-        syne: ["var(--font-syne)", "sans-serif"],
-        spaceGrotesk: ["var(--font-space-grotesk)", "sans-serif"],
+        syne: ["var(--font-syne)", "sans-serif"], // Outfit
+        spaceGrotesk: ["var(--font-space-grotesk)", "sans-serif"], // Inter
         jetbrainsMono: ["var(--font-jetbrains)", "monospace"],
       },
     },
