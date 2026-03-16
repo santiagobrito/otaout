@@ -1,6 +1,6 @@
 export const copy = {
   nav: {
-    links: ['The problem', 'Solution', 'Features', 'Case study', 'Pricing', 'Contact'],
+    links: ['The problem', 'Solution', 'Features', 'Case study', 'Contact'],
     cta: "Let's talk",
   },
   hero: {
@@ -107,6 +107,12 @@ export const copy = {
           'Google Ads + Meta with automation based on real occupancy. Organic SEO positioning.',
         icon: 'chart',
       },
+      {
+        title: 'Upselling module',
+        description:
+          'Maximize every booking: extras at checkout (late check-in, airport transfer, crib) and pre-arrival (extra cleaning, welcome pack, late checkout).',
+        icon: 'upselling',
+      },
     ],
   },
   caseStudy: {
@@ -125,26 +131,6 @@ export const copy = {
       'Automated Google Ads + Meta',
       '1,390,607€ revenue in 2025',
     ],
-  },
-  pricing: {
-    title: 'Clear pricing. No surprises.',
-    fixed: {
-      name: 'Fixed Model',
-      setup: 'Setup from 1,500€',
-      monthly: '150€/month maintenance',
-      ads: '300€/month ADS management',
-      description: 'For managers who prefer a predictable fixed cost.',
-    },
-    mixed: {
-      name: 'Mixed Success Model',
-      badge: 'Recommended',
-      setup: 'Setup 1,500€',
-      monthly: '150€/month fixed',
-      commission: '+ 2–3% on direct bookings',
-      description:
-        'We align our revenue with your success. The more direct bookings, the better for both of us.',
-    },
-    roi: 'With an average ticket of 2,000€ and 10 direct bookings per month, the service pays for itself — and then some.',
   },
   whyUs: {
     title: 'Why OTAout?',
@@ -172,6 +158,7 @@ export const copy = {
       submit: 'Send message',
     },
     success: 'Message sent. We\'ll get back to you within 24 hours.',
+    whatsapp: 'Or message us on WhatsApp',
   },
   footer: {
     tagline:

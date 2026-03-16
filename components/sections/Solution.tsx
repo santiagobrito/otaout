@@ -40,7 +40,7 @@ export default function Solution() {
         className="absolute top-0 left-0 right-0 h-px"
         style={{
           background:
-            'linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)',
+            'linear-gradient(90deg, transparent, rgba(0,0,0,0.06), transparent)',
         }}
       />
 
@@ -55,17 +55,17 @@ export default function Solution() {
           </p>
 
           {/* Headline */}
-          <h2 className="font-syne font-bold text-[#f5f5f2] text-[32px] md:text-[48px] leading-tight mb-8">
+          <h2 className="font-syne font-bold text-[#0F172A] text-[32px] md:text-[48px] leading-tight mb-8">
             {t.solution.headline}
           </h2>
 
           {/* Description */}
-          <p className="font-spaceGrotesk text-[#888888] text-base md:text-lg leading-relaxed mb-6">
+          <p className="font-spaceGrotesk text-[#64748B] text-base md:text-lg leading-relaxed mb-6">
             {t.solution.description}
           </p>
 
           {/* Includes */}
-          <p className="font-spaceGrotesk text-[#888888] text-base md:text-lg leading-relaxed">
+          <p className="font-spaceGrotesk text-[#64748B] text-base md:text-lg leading-relaxed">
             {t.solution.includes}
           </p>
         </div>

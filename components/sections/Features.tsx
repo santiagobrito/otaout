@@ -45,6 +45,13 @@ const icons: Record<string, React.ReactNode> = {
       <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
     </svg>
   ),
+  upselling: (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 2v20M2 12h20" />
+      <path d="M17 7l-5 5-5-5" />
+      <rect x="4" y="14" width="16" height="6" rx="1" />
+    </svg>
+  ),
 };
 
 export default function Features() {
@@ -81,22 +88,18 @@ export default function Features() {
     <section id="features" className="py-24 md:py-32">
       <div className="mx-auto max-w-[1280px] px-6 md:px-12">
         {/* Section title */}
-        <h2 className="font-syne font-bold text-[#f5f5f2] text-[32px] md:text-[48px] leading-tight text-center mb-16">
+        <h2 className="font-syne font-bold text-[#0F172A] text-[32px] md:text-[48px] leading-tight text-center mb-16">
           {t.features.title}
         </h2>
 
         {/* Feature cards grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {t.features.items.map((feature, i) => (
             <div
               key={i}
               ref={(el) => { cardsRef.current[i] = el; }}
               data-index={i}
-              className="rounded-xl border p-6 opacity-0 translate-y-8 transition-all duration-500 ease-out"
-              style={{
-                backgroundColor: 'rgba(255,255,255,0.03)',
-                borderColor: 'rgba(255,255,255,0.08)',
-              }}
+              className="rounded-xl border border-black/[0.08] bg-white shadow-sm p-6 opacity-0 translate-y-8 transition-all duration-500 ease-out"
             >
               {/* Icon */}
               <div className="text-[#E8440A] mb-4">
@@ -104,12 +107,12 @@ export default function Features() {
               </div>
 
               {/* Title */}
-              <h3 className="font-syne font-bold text-[#f5f5f2] text-lg mb-2">
+              <h3 className="font-syne font-bold text-[#0F172A] text-lg mb-2">
                 {feature.title}
               </h3>
 
               {/* Description */}
-              <p className="font-spaceGrotesk text-[#888888] text-sm leading-relaxed">
+              <p className="font-spaceGrotesk text-[#64748B] text-sm leading-relaxed">
                 {feature.description}
               </p>
             </div>

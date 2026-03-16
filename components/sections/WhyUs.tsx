@@ -42,7 +42,7 @@ export default function WhyUs() {
         {/* Title */}
         <h2
           data-reveal
-          className="mb-4 font-syne text-3xl font-extrabold tracking-tight text-[#f5f5f2] opacity-0 translate-y-6 transition-all duration-700 ease-out md:text-5xl"
+          className="mb-4 font-syne text-3xl font-extrabold tracking-tight text-[#0F172A] opacity-0 translate-y-6 transition-all duration-700 ease-out md:text-5xl"
         >
           {t.whyUs.title}
         </h2>
@@ -50,7 +50,7 @@ export default function WhyUs() {
         {/* Subtitle */}
         <p
           data-reveal
-          className="mb-12 font-spaceGrotesk text-lg text-[#888888] opacity-0 translate-y-6 transition-all duration-700 delay-100 ease-out md:text-xl"
+          className="mb-12 font-spaceGrotesk text-lg text-[#64748B] opacity-0 translate-y-6 transition-all duration-700 delay-100 ease-out md:text-xl"
         >
           {t.whyUs.subtitle}
         </p>
@@ -82,7 +82,7 @@ export default function WhyUs() {
                   />
                 </svg>
               </span>
-              <p className="font-spaceGrotesk text-base leading-relaxed text-[#f5f5f2] md:text-lg">
+              <p className="font-spaceGrotesk text-base leading-relaxed text-[#64748B] md:text-lg">
                 {point}
               </p>
             </li>

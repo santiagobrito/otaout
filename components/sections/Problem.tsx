@@ -43,7 +43,7 @@ export default function Problem() {
         className="absolute top-0 left-0 right-0 h-px"
         style={{
           background:
-            'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.08) 50%, transparent 100%)',
+            'linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.06) 50%, transparent 100%)',
         }}
       />
 
@@ -51,7 +51,7 @@ export default function Problem() {
         {/* Headline */}
         <h2
           data-reveal
-          className="mb-12 max-w-3xl font-syne text-[32px] font-bold leading-tight tracking-[-0.02em] text-[#f5f5f2] opacity-0 translate-y-6 transition-all duration-700 ease-out md:text-[48px]"
+          className="mb-12 max-w-3xl font-syne text-[32px] font-bold leading-tight tracking-[-0.02em] text-[#0F172A] opacity-0 translate-y-6 transition-all duration-700 ease-out md:text-[48px]"
         >
           {t.problem.headline}
         </h2>
@@ -62,7 +62,7 @@ export default function Problem() {
             <p
               key={i}
               data-reveal
-              className="font-spaceGrotesk text-base font-normal leading-[1.7] text-[#888888] opacity-0 translate-y-6 transition-all duration-700 ease-out md:text-lg"
+              className="font-spaceGrotesk text-base font-normal leading-[1.7] text-[#64748B] opacity-0 translate-y-6 transition-all duration-700 ease-out md:text-lg"
               style={{ transitionDelay: `${(i + 1) * 150}ms` }}
             >
               {paragraph}

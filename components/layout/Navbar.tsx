@@ -12,7 +12,6 @@ const NAV_HREFS = [
   '#solucion',
   '#features',
   '#caso-exito',
-  '#precios',
   '#contacto',
 ];
 
@@ -36,7 +35,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-[#0a0a0a]/80 backdrop-blur-xl">
+      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-black/5 bg-white/80 backdrop-blur-md">
         <div className="mx-auto flex max-w-[1280px] items-center justify-between px-6 py-4 md:px-12">
           {/* Logo */}
           <a
@@ -56,7 +55,7 @@ export default function Navbar() {
                 key={NAV_HREFS[i]}
                 href={NAV_HREFS[i]}
                 onClick={(e) => handleAnchorClick(e, NAV_HREFS[i])}
-                className="text-sm font-medium text-[#888888] transition-colors hover:text-[#f5f5f2]"
+                className="text-sm font-medium text-[#64748B] transition-colors hover:text-[#0F172A]"
               >
                 {label}
               </a>
@@ -82,17 +81,17 @@ export default function Navbar() {
             aria-label="Toggle menu"
           >
             <span
-              className={`block h-0.5 w-6 bg-[#f5f5f2] transition-all duration-300 ${
+              className={`block h-0.5 w-6 bg-[#0F172A] transition-all duration-300 ${
                 mobileOpen ? 'translate-y-2 rotate-45' : ''
               }`}
             />
             <span
-              className={`block h-0.5 w-6 bg-[#f5f5f2] transition-all duration-300 ${
+              className={`block h-0.5 w-6 bg-[#0F172A] transition-all duration-300 ${
                 mobileOpen ? 'opacity-0' : ''
               }`}
             />
             <span
-              className={`block h-0.5 w-6 bg-[#f5f5f2] transition-all duration-300 ${
+              className={`block h-0.5 w-6 bg-[#0F172A] transition-all duration-300 ${
                 mobileOpen ? '-translate-y-2 -rotate-45' : ''
               }`}
             />
@@ -102,14 +101,14 @@ export default function Navbar() {
 
       {/* Mobile overlay */}
       {mobileOpen && (
-        <div className="fixed inset-0 z-40 flex flex-col bg-[#0a0a0a]/98 backdrop-blur-xl pt-20 lg:hidden">
+        <div className="fixed inset-0 z-40 flex flex-col bg-white/98 backdrop-blur-xl pt-20 lg:hidden">
           <div className="flex flex-1 flex-col items-center justify-center gap-8">
             {t.nav.links.map((label, i) => (
               <a
                 key={NAV_HREFS[i]}
                 href={NAV_HREFS[i]}
                 onClick={(e) => handleAnchorClick(e, NAV_HREFS[i])}
-                className="text-xl font-medium text-[#f5f5f2] transition-colors hover:text-[#E8440A]"
+                className="text-xl font-medium text-[#0F172A] transition-colors hover:text-[#E8440A]"
               >
                 {label}
               </a>

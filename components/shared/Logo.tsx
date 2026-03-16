@@ -4,7 +4,7 @@ interface LogoProps {
 }
 
 export default function Logo({ variant = 'light', className = '' }: LogoProps) {
-  const otaColor = variant === 'light' ? '#f5f5f2' : '#0a0a0a';
+  const otaColor = variant === 'light' ? '#0F172A' : '#f5f5f2';
   const outColor = '#E8440A';
 
   return (

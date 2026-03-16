@@ -77,7 +77,7 @@ export default function CaseStudy() {
     <section
       id="caso-exito"
       className="py-24 md:py-32"
-      style={{ backgroundColor: 'rgba(255,255,255,0.02)' }}
+      style={{ backgroundColor: '#F0F0ED' }}
     >
       <div
         ref={sectionRef}
@@ -93,12 +93,12 @@ export default function CaseStudy() {
           </p>
 
           {/* Headline */}
-          <h2 className="font-syne font-bold text-[#f5f5f2] text-[32px] md:text-[48px] leading-tight mb-8">
+          <h2 className="font-syne font-bold text-[#0F172A] text-[32px] md:text-[48px] leading-tight mb-8">
             {t.caseStudy.headline}
           </h2>
 
           {/* Description */}
-          <p className="font-spaceGrotesk text-[#888888] text-base md:text-lg leading-relaxed mb-12">
+          <p className="font-spaceGrotesk text-[#64748B] text-base md:text-lg leading-relaxed mb-12">
             {t.caseStudy.description}
           </p>
         </div>
@@ -113,7 +113,7 @@ export default function CaseStudy() {
               className="flex items-start gap-3 opacity-0 translate-y-4 transition-all duration-400 ease-out"
             >
               <CheckIcon />
-              <span className="font-spaceGrotesk text-[#f5f5f2] text-sm leading-snug">
+              <span className="font-spaceGrotesk text-[#0F172A] text-sm leading-snug">
                 {spec}
               </span>
             </div>

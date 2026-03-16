@@ -6,7 +6,6 @@ import Pains from "@/components/sections/Pains";
 import Solution from "@/components/sections/Solution";
 import Features from "@/components/sections/Features";
 import CaseStudy from "@/components/sections/CaseStudy";
-import Pricing from "@/components/sections/Pricing";
 import WhyUs from "@/components/sections/WhyUs";
 import ContactForm from "@/components/sections/ContactForm";
 import Footer from "@/components/layout/Footer";
@@ -29,7 +28,6 @@ export default async function Home({ params }: Props) {
         <Solution />
         <Features />
         <CaseStudy />
-        <Pricing />
         <WhyUs />
         <ContactForm />
       </main>

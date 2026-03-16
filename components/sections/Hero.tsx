@@ -53,14 +53,14 @@ export default function Hero() {
       className="relative flex min-h-screen flex-col items-center justify-center px-6 md:px-12"
       style={{
         background:
-          'radial-gradient(ellipse at 85% 15%, rgba(232, 68, 10, 0.04) 0%, transparent 60%), #0a0a0a',
+          'radial-gradient(ellipse at 85% 15%, rgba(232, 68, 10, 0.03) 0%, transparent 60%), #FAFAFA',
       }}
     >
       <div className="mx-auto w-full max-w-[1280px] pt-24 pb-16 md:pt-32 md:pb-24">
         {/* Eyebrow */}
         <p
           data-reveal
-          className="mb-6 font-spaceGrotesk text-[11px] font-medium uppercase tracking-[0.2em] text-[#888888] opacity-0 translate-y-6 transition-all duration-700 ease-out"
+          className="mb-6 font-spaceGrotesk text-[11px] font-medium uppercase tracking-[0.2em] text-[#64748B] opacity-0 translate-y-6 transition-all duration-700 ease-out"
         >
           {t.hero.eyebrow}
         </p>
@@ -68,7 +68,7 @@ export default function Hero() {
         {/* Headline */}
         <h1
           data-reveal
-          className="mb-6 max-w-4xl font-syne text-[52px] font-extrabold leading-[1.05] tracking-[-0.03em] text-[#f5f5f2] opacity-0 translate-y-6 transition-all duration-700 delay-100 ease-out md:text-[96px]"
+          className="mb-6 max-w-4xl font-syne text-[36px] font-extrabold leading-[1.1] tracking-[-0.03em] text-[#0F172A] opacity-0 translate-y-6 transition-all duration-700 delay-100 ease-out sm:text-[44px] md:text-[56px] lg:text-[64px]"
         >
           {renderHeadline(t.hero.headline_1)}
           <br />
@@ -78,7 +78,7 @@ export default function Hero() {
         {/* Subtitle */}
         <p
           data-reveal
-          className="mb-10 max-w-2xl font-spaceGrotesk text-lg font-normal leading-relaxed text-[#888888] opacity-0 translate-y-6 transition-all duration-700 delay-200 ease-out md:text-xl"
+          className="mb-10 max-w-2xl font-spaceGrotesk text-lg font-normal leading-relaxed text-[#64748B] opacity-0 translate-y-6 transition-all duration-700 delay-200 ease-out md:text-xl"
         >
           {t.hero.subtitle}
         </p>
@@ -96,7 +96,7 @@ export default function Hero() {
           </a>
           <a
             href="#caso-exito"
-            className="inline-flex items-center gap-2 font-spaceGrotesk text-base font-medium text-[#f5f5f2] transition-colors hover:text-[#E8440A]"
+            className="inline-flex items-center gap-2 font-spaceGrotesk text-base font-medium text-[#0F172A] transition-colors hover:text-[#E8440A]"
           >
             {t.hero.cta_secondary}
             <span aria-hidden="true">&rarr;</span>
@@ -111,13 +111,13 @@ export default function Hero() {
           {t.hero.stats.map((stat, i) => (
             <div key={i} className="flex items-start sm:flex-1">
               {i > 0 && (
-                <div className="mr-8 hidden h-14 w-px bg-white/[0.15] sm:block" />
+                <div className="mr-8 hidden h-14 w-px bg-[#0F172A]/15 sm:block" />
               )}
               <div className={i > 0 ? 'sm:pl-0' : ''}>
-                <p className="font-syne text-4xl font-bold text-[#f5f5f2] md:text-5xl">
+                <p className="font-syne text-4xl font-bold text-[#0F172A] md:text-5xl">
                   {stat.value}
                 </p>
-                <p className="mt-1 font-spaceGrotesk text-sm text-[#888888]">
+                <p className="mt-1 font-spaceGrotesk text-sm text-[#64748B]">
                   {stat.label}
                 </p>
               </div>

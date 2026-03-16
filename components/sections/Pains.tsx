@@ -43,7 +43,7 @@ export default function Pains() {
         className="absolute top-0 left-0 right-0 h-px"
         style={{
           background:
-            'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.08) 50%, transparent 100%)',
+            'linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.06) 50%, transparent 100%)',
         }}
       />
 
@@ -51,7 +51,7 @@ export default function Pains() {
         {/* Section title */}
         <h2
           data-reveal
-          className="mb-14 font-syne text-[32px] font-bold leading-tight tracking-[-0.02em] text-[#f5f5f2] opacity-0 translate-y-6 transition-all duration-700 ease-out md:text-[48px]"
+          className="mb-14 font-syne text-[32px] font-bold leading-tight tracking-[-0.02em] text-[#0F172A] opacity-0 translate-y-6 transition-all duration-700 ease-out md:text-[48px]"
         >
           {t.pains.title}
         </h2>
@@ -62,7 +62,7 @@ export default function Pains() {
             <div
               key={item.number}
               data-reveal
-              className={`group rounded-xl border border-white/[0.08] bg-white/[0.03] p-6 opacity-0 translate-y-6 transition-all duration-500 ease-out hover:-translate-y-1 hover:border-[#E8440A]/60 md:p-8 ${
+              className={`group rounded-xl border border-black/[0.08] bg-white shadow-sm p-6 opacity-0 translate-y-6 transition-all duration-500 ease-out hover:-translate-y-1 hover:border-[#E8440A]/60 hover:shadow-md md:p-8 ${
                 i >= 3 ? 'md:col-start-auto lg:col-start-auto' : ''
               }`}
               style={{ transitionDelay: `${i * 100}ms` }}
@@ -73,12 +73,12 @@ export default function Pains() {
               </p>
 
               {/* Title */}
-              <h3 className="mb-3 font-syne text-lg font-bold text-[#f5f5f2]">
+              <h3 className="mb-3 font-syne text-lg font-bold text-[#0F172A]">
                 {item.title}
               </h3>
 
               {/* Description */}
-              <p className="font-spaceGrotesk text-sm leading-[1.7] text-[#888888]">
+              <p className="font-spaceGrotesk text-sm leading-[1.7] text-[#64748B]">
                 {item.description}
               </p>
             </div>

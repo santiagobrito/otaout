@@ -1,6 +1,6 @@
 export const copy = {
   nav: {
-    links: ['El problema', 'Solución', 'Features', 'Caso de éxito', 'Precios', 'Contacto'],
+    links: ['El problema', 'Solución', 'Features', 'Caso de éxito', 'Contacto'],
     cta: 'Hablamos',
   },
   hero: {
@@ -107,6 +107,12 @@ export const copy = {
           'Google Ads + Meta con automatización por ocupación real. SEO posicionamiento orgánico.',
         icon: 'chart',
       },
+      {
+        title: 'Módulo de upselling',
+        description:
+          'Maximiza cada reserva: extras al reservar (late check-in, transfer, cuna) y antes de llegar (limpieza extra, pack bienvenida, late checkout).',
+        icon: 'upselling',
+      },
     ],
   },
   caseStudy: {
@@ -125,26 +131,6 @@ export const copy = {
       'Google Ads + Meta automatizado',
       '1.390.607€ facturación 2025',
     ],
-  },
-  pricing: {
-    title: 'Precios claros. Sin sorpresas.',
-    fixed: {
-      name: 'Modelo Fijo',
-      setup: 'Setup desde 1.500€',
-      monthly: '150€/mes mantenimiento',
-      ads: '300€/mes gestión ADS',
-      description: 'Para gestores que prefieren un coste fijo predecible.',
-    },
-    mixed: {
-      name: 'Modelo Mixto a Éxito',
-      badge: 'Recomendado',
-      setup: 'Setup 1.500€',
-      monthly: '150€/mes fijo',
-      commission: '+ 2–3% sobre reservas directas',
-      description:
-        'Alineamos nuestros ingresos con tu éxito. Cuantas más reservas directas, mejor para los dos.',
-    },
-    roi: 'Con ticket medio de 2.000€ y 10 reservas directas al mes, el servicio se paga solo — y te sobra.',
   },
   whyUs: {
     title: '¿Por qué OTAout?',
@@ -172,6 +158,7 @@ export const copy = {
       submit: 'Enviar mensaje',
     },
     success: 'Mensaje enviado. Te respondo en menos de 24 horas.',
+    whatsapp: 'O escríbenos por WhatsApp',
   },
   footer: {
     tagline:
