@@ -4,6 +4,8 @@ import Hero from "@/components/sections/Hero";
 import Problem from "@/components/sections/Problem";
 import Pains from "@/components/sections/Pains";
 import Solution from "@/components/sections/Solution";
+import Features from "@/components/sections/Features";
+import CaseStudy from "@/components/sections/CaseStudy";
 import Pricing from "@/components/sections/Pricing";
 import WhyUs from "@/components/sections/WhyUs";
 import ContactForm from "@/components/sections/ContactForm";
@@ -25,6 +27,8 @@ export default async function Home({ params }: Props) {
         <Problem />
         <Pains />
         <Solution />
+        <Features />
+        <CaseStudy />
         <Pricing />
         <WhyUs />
         <ContactForm />
