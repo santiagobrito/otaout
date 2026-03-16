@@ -1,6 +1,23 @@
 FROM node:20-alpine
+RUN apk add --no-cache libc6-compat
 WORKDIR /app
-RUN echo '{"name":"test","scripts":{"start":"node server.js"}}' > package.json
-RUN echo 'const http = require("http"); http.createServer((q,s) => { s.end("ok"); }).listen(3000);' > server.js
+
+COPY package.json package-lock.json ./
+RUN npm ci
+
+COPY . .
+
+ARG NEXT_PUBLIC_APP_URL
+ARG NEXT_PUBLIC_SITE_NAME
+ENV NEXT_PUBLIC_APP_URL=$NEXT_PUBLIC_APP_URL
+ENV NEXT_PUBLIC_SITE_NAME=$NEXT_PUBLIC_SITE_NAME
+ENV NEXT_TELEMETRY_DISABLED=1
+
+RUN npm run build
+
+ENV NODE_ENV=production
+ENV PORT=3000
+ENV HOSTNAME=0.0.0.0
+
 EXPOSE 3000
-CMD ["node", "server.js"]
+CMD ["npx", "next", "start", "-p", "3000"]
