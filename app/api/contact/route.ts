@@ -5,6 +5,7 @@ import { sendLeadNotification } from '@/lib/resend/client';
 const contactSchema = z.object({
   name: z.string().min(1),
   email: z.string().email(),
+  site: z.string().optional(),
   properties: z.string().min(1),
   pms: z.string().min(1),
   message: z.string().optional(),
@@ -24,6 +25,7 @@ export async function POST(request: Request) {
     await sendLeadNotification({
       name: data.name,
       email: data.email,
+      site: data.site,
       properties: data.properties,
       pms: data.pms,
       message: data.message,

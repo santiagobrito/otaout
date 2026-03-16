@@ -7,6 +7,7 @@ function getResend() {
 type LeadData = {
   name: string;
   email: string;
+  site?: string;
   properties: string;
   pms: string;
   message?: string;
@@ -32,6 +33,14 @@ export async function sendLeadNotification(data: LeadData) {
           <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-weight: 600; color: #555;">Email</td>
           <td style="padding: 10px 0; border-bottom: 1px solid #eee;"><a href="mailto:${data.email}" style="color: #E8440A;">${data.email}</a></td>
         </tr>
+        ${
+          data.site
+            ? `<tr>
+          <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-weight: 600; color: #555;">Sitio web</td>
+          <td style="padding: 10px 0; border-bottom: 1px solid #eee;"><a href="${data.site}" style="color: #E8440A;">${data.site}</a></td>
+        </tr>`
+            : ''
+        }
         <tr>
           <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-weight: 600; color: #555;">Propiedades</td>
           <td style="padding: 10px 0; border-bottom: 1px solid #eee;">${data.properties}</td>

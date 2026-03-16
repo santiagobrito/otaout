@@ -150,6 +150,7 @@ export const copy = {
     fields: {
       name: 'Name',
       email: 'Email',
+      site: 'Current website',
       properties: 'Number of properties',
       propertiesOptions: ['1–5', '6–20', '21–50', '50+'],
       pms: 'Current PMS',

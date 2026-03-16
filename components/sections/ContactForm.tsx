@@ -11,6 +11,7 @@ import { copy as enCopy } from '@/lib/copy/en';
 const contactSchema = z.object({
   name: z.string().min(1),
   email: z.string().email(),
+  site: z.string().optional(),
   properties: z.string().min(1),
   pms: z.string().min(1),
   message: z.string().optional(),
@@ -151,6 +152,20 @@ export default function ContactForm() {
             {errors.email && (
               <p className={errorClasses}>{t.contact.fields.email}</p>
             )}
+          </div>
+
+          {/* Site */}
+          <div>
+            <label htmlFor="site" className={labelClasses}>
+              {t.contact.fields.site}
+            </label>
+            <input
+              id="site"
+              type="url"
+              placeholder="https://"
+              className={inputClasses}
+              {...register('site')}
+            />
           </div>
 
           {/* Properties */}
