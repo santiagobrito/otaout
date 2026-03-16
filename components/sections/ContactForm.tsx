@@ -77,23 +77,39 @@ export default function ContactForm() {
   };
 
   const inputClasses =
-    'w-full rounded-lg border border-black/[0.15] bg-white p-3 font-spaceGrotesk text-sm text-[#0F172A] placeholder-[#64748B]/50 outline-none transition-colors focus:border-[#E8440A]';
+    'w-full rounded-lg border border-black/[0.15] bg-white px-4 py-3 h-12 font-spaceGrotesk text-sm text-[#0F172A] placeholder-[#64748B]/50 outline-none transition-all focus:border-[#E8440A] focus:ring-2 focus:ring-[#E8440A]/10';
 
-  const labelClasses = 'mb-1.5 block font-spaceGrotesk text-sm text-[#64748B]';
+  const selectClasses =
+    'w-full rounded-lg border border-black/[0.15] bg-white px-4 py-3 h-12 font-spaceGrotesk text-sm text-[#0F172A] outline-none transition-all focus:border-[#E8440A] focus:ring-2 focus:ring-[#E8440A]/10 appearance-none cursor-pointer bg-[url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%2364748B%22%20stroke-width%3D%222%22%3E%3Cpath%20d%3D%22M6%209l6%206%206-6%22%2F%3E%3C%2Fsvg%3E")] bg-[length:16px] bg-[right_12px_center] bg-no-repeat';
+
+  const labelClasses = 'mb-1.5 block font-spaceGrotesk text-sm font-medium text-[#64748B]';
 
   const errorClasses = 'mt-1 font-spaceGrotesk text-xs text-[#E8440A]';
+
+  const requiredLabel = locale === 'en' ? 'This field is required' : 'Este campo es obligatorio';
+  const invalidEmail = locale === 'en' ? 'Enter a valid email address' : 'Introduce un email válido';
 
   return (
     <section
       id="contacto"
       ref={sectionRef}
-      className="px-6 py-24 md:px-12 md:py-32"
+      className="relative px-6 py-24 md:px-12 md:py-32"
     >
-      <div className="mx-auto max-w-[560px]">
+      {/* Section divider */}
+      <div
+        className="absolute top-0 left-0 right-0 h-px"
+        style={{
+          background:
+            'linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.06) 50%, transparent 100%)',
+        }}
+      />
+
+      <div className="mx-auto max-w-[1280px]">
+       <div className="mx-auto max-w-[560px]">
         {/* Headline */}
         <h2
           data-reveal
-          className="mb-4 font-syne text-3xl font-extrabold tracking-tight text-[#0F172A] opacity-0 translate-y-6 transition-all duration-700 ease-out md:text-5xl"
+          className="mb-4 font-syne text-[32px] font-bold leading-tight tracking-[-0.02em] text-[#0F172A] opacity-0 translate-y-6 transition-all duration-700 ease-out md:text-[48px]"
         >
           {t.contact.headline}
         </h2>
@@ -131,10 +147,11 @@ export default function ContactForm() {
               id="name"
               type="text"
               className={inputClasses}
+              aria-required="true"
               {...register('name')}
             />
             {errors.name && (
-              <p className={errorClasses}>{t.contact.fields.name}</p>
+              <p className={errorClasses} role="alert">{requiredLabel}</p>
             )}
           </div>
 
@@ -147,10 +164,11 @@ export default function ContactForm() {
               id="email"
               type="email"
               className={inputClasses}
+              aria-required="true"
               {...register('email')}
             />
             {errors.email && (
-              <p className={errorClasses}>{t.contact.fields.email}</p>
+              <p className={errorClasses} role="alert">{invalidEmail}</p>
             )}
           </div>
 
@@ -175,9 +193,10 @@ export default function ContactForm() {
             </label>
             <select
               id="properties"
-              className={inputClasses}
+              className={selectClasses}
               defaultValue=""
               {...register('properties')}
+              aria-required="true"
             >
               <option value="" disabled hidden>
                 —
@@ -189,7 +208,7 @@ export default function ContactForm() {
               ))}
             </select>
             {errors.properties && (
-              <p className={errorClasses}>{t.contact.fields.properties}</p>
+              <p className={errorClasses} role="alert">{requiredLabel}</p>
             )}
           </div>
 
@@ -200,9 +219,10 @@ export default function ContactForm() {
             </label>
             <select
               id="pms"
-              className={inputClasses}
+              className={selectClasses}
               defaultValue=""
               {...register('pms')}
+              aria-required="true"
             >
               <option value="" disabled hidden>
                 —
@@ -214,7 +234,7 @@ export default function ContactForm() {
               ))}
             </select>
             {errors.pms && (
-              <p className={errorClasses}>{t.contact.fields.pms}</p>
+              <p className={errorClasses} role="alert">{requiredLabel}</p>
             )}
           </div>
 
@@ -226,7 +246,7 @@ export default function ContactForm() {
             <textarea
               id="message"
               rows={4}
-              className={`${inputClasses} resize-none`}
+              className={`${inputClasses} !h-auto resize-none`}
               {...register('message')}
             />
           </div>
@@ -235,7 +255,7 @@ export default function ContactForm() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="mt-2 rounded-lg bg-[#E8440A] px-6 py-3 font-spaceGrotesk text-sm font-semibold text-white transition-colors hover:bg-[#c9380a] disabled:opacity-50 disabled:cursor-not-allowed"
+            className="mt-2 rounded-lg bg-[#E8440A] px-7 py-3.5 font-spaceGrotesk text-base font-semibold text-white transition-colors hover:bg-[#c9380a] disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isSubmitting ? '...' : t.contact.fields.submit}
           </button>
@@ -255,20 +275,31 @@ export default function ContactForm() {
 
           {/* Success */}
           {status === 'success' && (
-            <p className="font-spaceGrotesk text-sm text-green-600">
-              {t.contact.success}
-            </p>
+            <div className="rounded-lg border border-green-200 bg-green-50 p-4" role="alert">
+              <div className="flex items-center gap-3">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="shrink-0 text-green-600">
+                  <path d="M10 18a8 8 0 100-16 8 8 0 000 16z" fill="currentColor" opacity="0.15"/>
+                  <path d="M6.5 10l2.5 2.5 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                <p className="font-spaceGrotesk text-sm font-medium text-green-700">
+                  {t.contact.success}
+                </p>
+              </div>
+            </div>
           )}
 
           {/* Error */}
           {status === 'error' && (
-            <p className="font-spaceGrotesk text-sm text-[#E8440A]">
-              {locale === 'en'
-                ? 'Something went wrong. Please try again.'
-                : 'Algo ha fallado. Inténtalo de nuevo.'}
-            </p>
+            <div className="rounded-lg border border-red-200 bg-red-50 p-4" role="alert">
+              <p className="font-spaceGrotesk text-sm font-medium text-[#E8440A]">
+                {locale === 'en'
+                  ? 'Something went wrong. Please try again.'
+                  : 'Algo ha fallado. Inténtalo de nuevo.'}
+              </p>
+            </div>
           )}
         </form>
+       </div>
       </div>
     </section>
   );

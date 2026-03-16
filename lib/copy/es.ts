@@ -1,14 +1,14 @@
 export const copy = {
   nav: {
-    links: ['El problema', 'Solución', 'Features', 'Caso de éxito', 'Contacto'],
+    links: ['El problema', 'Solución', 'Features', 'Caso de éxito', 'Blog', 'Contacto'],
     cta: 'Hablamos',
   },
   hero: {
     eyebrow: 'Para gestores de alquiler vacacional con Smoobu, Beds24 y más',
     headline_1: 'Airbnb se lleva el 15%.',
-    headline_2: 'Ya es hora de que pares de pagarlo.',
+    headline_2: 'Es hora de construir tu propio canal.',
     subtitle:
-      'Construimos la plataforma de reservas directas que tu negocio merece — con tu marca, tu dominio, tus datos y tu dinero. Sin comisiones. Sin depender de nadie.',
+      'Tu propia plataforma de reservas directas — con tu marca, tu dominio, tus datos y cero comisiones.',
     cta_primary: 'Quiero mis reservas directas',
     cta_secondary: 'Ver caso de éxito',
     stats: [
@@ -18,11 +18,11 @@ export const copy = {
     ],
   },
   problem: {
-    headline: 'Llevas años construyendo su negocio. No el tuyo.',
+    headline: 'Airbnb te ayudó a empezar. Pero no tiene por qué quedarse con el 15% para siempre.',
     paragraphs: [
-      'Cada reserva que entra por Airbnb te cuesta entre un 15% y un 20%. No es una comisión — es un impuesto por no tener alternativa.',
-      'Mientras tanto, Airbnb se queda con los datos de tus huéspedes, tu marca desaparece detrás de la suya, y si su algoritmo decide bajarte el ranking, tu facturación se desploma.',
-      'El resultado: trabajas más, ganas menos, y dependes de una plataforma que no te debe nada.',
+      'Las OTAs han sido un gran trampolín para llenar tus propiedades. Pero las comisiones del 15–20% reducen tu margen en cada reserva, y a largo plazo eso frena tu crecimiento.',
+      'El verdadero problema es la dependencia: no tienes los datos de tus huéspedes, tu marca no se construye, y un cambio de algoritmo puede afectar tu ocupación de un mes a otro. Es un riesgo de negocio.',
+      'La decisión inteligente no es abandonar las OTAs, sino diversificar. Construir un canal directo que trabaje en paralelo, donde tú controlas la marca, los datos y el margen.',
     ],
   },
   pains: {
@@ -30,9 +30,9 @@ export const copy = {
     items: [
       {
         number: '01',
-        title: 'Comisiones que se comen tu margen',
+        title: 'Comisiones que limitan tu crecimiento',
         description:
-          'Entre el 15% y el 20% de cada reserva va directo a Airbnb o Booking. En 100 reservas de 2.000€, son 30.000–40.000€ al año.',
+          'Entre el 15% y el 20% de cada reserva se va en comisiones. En 100 reservas de 2.000€, son 30.000–40.000€ al año que podrías reinvertir.',
       },
       {
         number: '02',
@@ -44,19 +44,19 @@ export const copy = {
         number: '03',
         title: 'No tienes los datos de tus huéspedes',
         description:
-          'Airbnb no te da emails ni teléfonos. No puedes hacer remarketing, ni email marketing, ni fidelizar. Cada huésped es de un solo uso.',
+          'Las OTAs no comparten emails ni teléfonos. Sin esos datos, no puedes hacer remarketing, email marketing ni fidelizar. Cada huésped es de un solo uso.',
       },
       {
         number: '04',
-        title: 'Tu marca no existe',
+        title: 'Tu marca no se construye',
         description:
-          'Tus propiedades aparecen como "Apartamento en Barcelona" en Airbnb. No hay branding, no hay diferenciación, no hay recuerdo de marca.',
+          'En las OTAs, tus propiedades aparecen como "Apartamento en Barcelona". No hay branding, no hay diferenciación, no hay recuerdo de marca.',
       },
       {
         number: '05',
         title: 'Dependes del algoritmo',
         description:
-          'Un cambio en el ranking de Airbnb puede hundirte la ocupación de un mes para otro. No controlas tu distribución.',
+          'Un cambio en el ranking de las OTAs puede afectar tu ocupación de un mes a otro. Sin canal propio, no controlas tu distribución.',
       },
     ],
   },
@@ -66,7 +66,7 @@ export const copy = {
     description:
       'OTAout construye tu web de reservas directas integrada con tu PMS. No es un template — es una plataforma a medida con tu marca, tu dominio, tu Stripe y tu panel de control.',
     includes:
-      'Todo incluido: diseño, desarrollo, integración PMS, pasarela de pago, SEO técnico, panel admin y soporte continuo.',
+      'Nos encargamos de todo: diseño, desarrollo, integración PMS, pasarela de pago, SEO técnico, panel admin y asesoramiento en estrategia de marketing para hacer crecer tu canal directo.',
   },
   features: {
     title: 'Todo lo que incluye tu plataforma',
@@ -102,9 +102,9 @@ export const copy = {
         icon: 'dashboard',
       },
       {
-        title: 'ADS + SEO management',
+        title: 'ADS + SEO (servicio adicional)',
         description:
-          'Google Ads + Meta con automatización por ocupación real. SEO posicionamiento orgánico.',
+          'Gestión de Google Ads + Meta Ads y posicionamiento SEO. Servicio opcional con coste de gestión e inversión publicitaria aparte.',
         icon: 'chart',
       },
       {
@@ -137,16 +137,17 @@ export const copy = {
     subtitle:
       'No somos una agencia genérica. Somos especialistas en PMS que también programamos.',
     points: [
-      'Conocemos Smoobu, Beds24 y Hostaway por dentro — sus APIs, sus limitaciones, sus hacks.',
-      'Usamos el mismo stack (Next.js, Tailwind, Stripe) para nuestros clientes y para nosotros mismos.',
-      'No hacemos webs "bonitas" que no convierten. Hacemos plataformas de reservas que facturan.',
-      'Soporte continuo — no desaparecemos después del lanzamiento.',
+      'Integraciones que funcionan desde el día uno — conocemos las APIs de Smoobu, Beds24 y Hostaway por dentro.',
+      'Tecnología probada en producción — el mismo stack que usamos para nuestros propios proyectos.',
+      'Plataformas que facturan, no webs bonitas que nadie usa.',
+      'Soporte continuo incluido — seguimos optimizando después del lanzamiento.',
+      'Estrategia de crecimiento — te asesoramos en marketing digital, posicionamiento y captación para que tu canal directo crezca mes a mes.',
     ],
   },
   contact: {
-    headline: '¿Cuánto le has pagado a Airbnb este año?',
+    headline: 'Analizamos tu web gratis',
     subtitle:
-      'Cuéntanos sobre tu negocio y te mostramos cuánto puedes recuperar.',
+      'Dinos tu web actual y en 48h recibirás un informe con lo que estás perdiendo en comisiones y cómo recuperarlo.',
     fields: {
       name: 'Nombre',
       email: 'Email',
@@ -156,9 +157,9 @@ export const copy = {
       pms: 'PMS actual',
       pmsOptions: ['Smoobu', 'Beds24', 'Otro', 'No tengo'],
       message: 'Mensaje (opcional)',
-      submit: 'Enviar mensaje',
+      submit: 'Quiero mi análisis gratis',
     },
-    success: 'Mensaje enviado. Te respondo en menos de 24 horas.',
+    success: 'Recibido. Te respondemos en menos de 24 horas.',
     whatsapp: 'O escríbenos por WhatsApp',
   },
   footer: {

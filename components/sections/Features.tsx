@@ -68,7 +68,7 @@ export default function Features() {
             const delay = el.dataset.index ? parseInt(el.dataset.index) * 100 : 0;
             setTimeout(() => {
               el.classList.add('opacity-100', 'translate-y-0');
-              el.classList.remove('opacity-0', 'translate-y-8');
+              el.classList.remove('opacity-0', 'translate-y-6');
             }, delay);
             observer.unobserve(el);
           }
@@ -85,8 +85,17 @@ export default function Features() {
   }, []);
 
   return (
-    <section id="features" className="py-24 md:py-32">
-      <div className="mx-auto max-w-[1280px] px-6 md:px-12">
+    <section id="features" className="relative px-6 py-24 md:px-12 md:py-32">
+      {/* Section divider */}
+      <div
+        className="absolute top-0 left-0 right-0 h-px"
+        style={{
+          background:
+            'linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.06) 50%, transparent 100%)',
+        }}
+      />
+
+      <div className="mx-auto max-w-[1280px]">
         {/* Section title */}
         <h2 className="font-syne font-bold text-[#0F172A] text-[32px] md:text-[48px] leading-tight text-center mb-16">
           {t.features.title}
@@ -99,10 +108,10 @@ export default function Features() {
               key={i}
               ref={(el) => { cardsRef.current[i] = el; }}
               data-index={i}
-              className="rounded-xl border border-black/[0.08] bg-white shadow-sm p-6 opacity-0 translate-y-8 transition-all duration-500 ease-out"
+              className="group rounded-xl border border-black/[0.08] bg-white shadow-sm p-6 md:p-8 opacity-0 translate-y-6 transition-all duration-500 ease-out hover:-translate-y-1 hover:border-[#E8440A]/60 hover:shadow-md"
             >
               {/* Icon */}
-              <div className="text-[#E8440A] mb-4">
+              <div className="text-[#E8440A] mb-4" aria-hidden="true">
                 {icons[feature.icon] || null}
               </div>
 
@@ -112,7 +121,7 @@ export default function Features() {
               </h3>
 
               {/* Description */}
-              <p className="font-spaceGrotesk text-[#64748B] text-sm leading-relaxed">
+              <p className="font-spaceGrotesk text-[#64748B] text-sm leading-[1.7]">
                 {feature.description}
               </p>
             </div>

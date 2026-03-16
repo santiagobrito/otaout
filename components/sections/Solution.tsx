@@ -18,7 +18,7 @@ export default function Solution() {
       ([entry]) => {
         if (entry.isIntersecting) {
           el.classList.add('opacity-100', 'translate-y-0');
-          el.classList.remove('opacity-0', 'translate-y-8');
+          el.classList.remove('opacity-0', 'translate-y-6');
           observer.unobserve(el);
         }
       },
@@ -33,7 +33,7 @@ export default function Solution() {
     <section
       id="solucion"
       ref={sectionRef}
-      className="relative py-24 md:py-32 opacity-0 translate-y-8 transition-all duration-700 ease-out"
+      className="relative px-6 py-24 md:px-12 md:py-32 opacity-0 translate-y-6 transition-all duration-700 ease-out"
     >
       {/* Section divider */}
       <div
@@ -44,7 +44,7 @@ export default function Solution() {
         }}
       />
 
-      <div className="mx-auto max-w-[1280px] px-6 md:px-12">
+      <div className="mx-auto max-w-[1280px]">
         <div className="mx-auto max-w-3xl text-center">
           {/* Eyebrow */}
           <p

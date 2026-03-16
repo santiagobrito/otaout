@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from 'react';
 import { useLocale } from 'next-intl';
+import { Link as IntlLink } from '@/i18n/navigation';
 import Logo from '@/components/shared/Logo';
 import LanguageSwitcher from '@/components/shared/LanguageSwitcher';
 import { copy as esCopy } from '@/lib/copy/es';
@@ -12,6 +13,7 @@ const NAV_HREFS = [
   '#solucion',
   '#features',
   '#caso-exito',
+  '/blog',
   '#contacto',
 ];
 
@@ -44,22 +46,37 @@ export default function Navbar() {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
+            aria-label="OTAout - Go to top"
           >
             <Logo />
           </a>
 
           {/* Desktop nav links */}
           <div className="hidden items-center gap-8 lg:flex">
-            {t.nav.links.map((label, i) => (
-              <a
-                key={NAV_HREFS[i]}
-                href={NAV_HREFS[i]}
-                onClick={(e) => handleAnchorClick(e, NAV_HREFS[i])}
-                className="text-sm font-medium text-[#64748B] transition-colors hover:text-[#0F172A]"
-              >
-                {label}
-              </a>
-            ))}
+            {t.nav.links.map((label, i) => {
+              const href = NAV_HREFS[i];
+              if (href.startsWith('#')) {
+                return (
+                  <a
+                    key={href}
+                    href={href}
+                    onClick={(e) => handleAnchorClick(e, href)}
+                    className="text-sm font-medium text-[#64748B] transition-colors hover:text-[#0F172A]"
+                  >
+                    {label}
+                  </a>
+                );
+              }
+              return (
+                <IntlLink
+                  key={href}
+                  href={href}
+                  className="text-sm font-medium text-[#64748B] transition-colors hover:text-[#0F172A]"
+                >
+                  {label}
+                </IntlLink>
+              );
+            })}
           </div>
 
           {/* Desktop right side */}
@@ -68,7 +85,7 @@ export default function Navbar() {
             <a
               href="#contacto"
               onClick={(e) => handleAnchorClick(e, '#contacto')}
-              className="rounded-lg bg-[#E8440A] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#E8440A]/90"
+              className="rounded-lg bg-[#E8440A] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#c9380a]"
             >
               {t.nav.cta}
             </a>
@@ -103,23 +120,38 @@ export default function Navbar() {
       {mobileOpen && (
         <div className="fixed inset-0 z-40 flex flex-col bg-white/98 backdrop-blur-xl pt-20 lg:hidden">
           <div className="flex flex-1 flex-col items-center justify-center gap-8">
-            {t.nav.links.map((label, i) => (
-              <a
-                key={NAV_HREFS[i]}
-                href={NAV_HREFS[i]}
-                onClick={(e) => handleAnchorClick(e, NAV_HREFS[i])}
-                className="text-xl font-medium text-[#0F172A] transition-colors hover:text-[#E8440A]"
-              >
-                {label}
-              </a>
-            ))}
+            {t.nav.links.map((label, i) => {
+              const href = NAV_HREFS[i];
+              if (href.startsWith('#')) {
+                return (
+                  <a
+                    key={href}
+                    href={href}
+                    onClick={(e) => handleAnchorClick(e, href)}
+                    className="text-xl font-medium text-[#0F172A] transition-colors hover:text-[#E8440A]"
+                  >
+                    {label}
+                  </a>
+                );
+              }
+              return (
+                <IntlLink
+                  key={href}
+                  href={href}
+                  onClick={() => setMobileOpen(false)}
+                  className="text-xl font-medium text-[#0F172A] transition-colors hover:text-[#E8440A]"
+                >
+                  {label}
+                </IntlLink>
+              );
+            })}
             <div className="mt-4">
               <LanguageSwitcher />
             </div>
             <a
               href="#contacto"
               onClick={(e) => handleAnchorClick(e, '#contacto')}
-              className="mt-2 rounded-lg bg-[#E8440A] px-8 py-3 text-base font-semibold text-white transition-colors hover:bg-[#E8440A]/90"
+              className="mt-2 rounded-lg bg-[#E8440A] px-8 py-3 text-base font-semibold text-white transition-colors hover:bg-[#c9380a]"
             >
               {t.nav.cta}
             </a>

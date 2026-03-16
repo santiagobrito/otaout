@@ -1,14 +1,14 @@
 export const copy = {
   nav: {
-    links: ['The problem', 'Solution', 'Features', 'Case study', 'Contact'],
+    links: ['The problem', 'Solution', 'Features', 'Case study', 'Blog', 'Contact'],
     cta: "Let's talk",
   },
   hero: {
     eyebrow: 'For vacation rental managers using Smoobu, Beds24 and more',
     headline_1: 'Airbnb takes 15%.',
-    headline_2: "It's time you stopped paying it.",
+    headline_2: 'Time to build your own channel.',
     subtitle:
-      'We build the direct booking platform your business deserves — with your brand, your domain, your data and your money. No commissions. No dependencies.',
+      'Your own direct booking platform — your brand, your domain, your data, zero commissions.',
     cta_primary: 'I want my direct bookings',
     cta_secondary: 'See case study',
     stats: [
@@ -18,11 +18,11 @@ export const copy = {
     ],
   },
   problem: {
-    headline: "You've spent years building their business. Not yours.",
+    headline: "Airbnb helped you get started. But it doesn't have to keep 15% forever.",
     paragraphs: [
-      'Every booking that comes through Airbnb costs you between 15% and 20%. It\'s not a commission — it\'s a tax for not having an alternative.',
-      "Meanwhile, Airbnb keeps your guests' data, your brand disappears behind theirs, and if their algorithm decides to drop your ranking, your revenue collapses.",
-      "The result: you work more, earn less, and depend on a platform that owes you nothing.",
+      'OTAs have been a great springboard to fill your properties. But 15–20% commissions on every booking eat into your margin, and over time that limits your growth.',
+      "The real issue is dependency: you don't own your guests' data, your brand isn't being built, and an algorithm change can affect your occupancy overnight. That's a business risk.",
+      "The smart move isn't leaving OTAs — it's diversifying. Build a direct channel that works alongside them, where you control the brand, the data, and the margin.",
     ],
   },
   pains: {
@@ -30,9 +30,9 @@ export const copy = {
     items: [
       {
         number: '01',
-        title: 'Commissions eating your margin',
+        title: 'Commissions limiting your growth',
         description:
-          'Between 15% and 20% of every booking goes straight to Airbnb or Booking. On 100 bookings at 2,000€, that\'s 30,000–40,000€ per year.',
+          'Between 15% and 20% of every booking goes to commissions. On 100 bookings at 2,000€, that\'s 30,000–40,000€ per year you could reinvest.',
       },
       {
         number: '02',
@@ -44,19 +44,19 @@ export const copy = {
         number: '03',
         title: "You don't own your guests' data",
         description:
-          "Airbnb doesn't give you emails or phone numbers. You can't do remarketing, email marketing, or build loyalty. Every guest is single-use.",
+          "OTAs don't share emails or phone numbers. Without that data, you can't do remarketing, email marketing, or build loyalty. Every guest is single-use.",
       },
       {
         number: '04',
-        title: "Your brand doesn't exist",
+        title: "Your brand isn't being built",
         description:
-          'Your properties show up as "Apartment in Barcelona" on Airbnb. No branding, no differentiation, no brand recall.',
+          'On OTAs, your properties show up as "Apartment in Barcelona". No branding, no differentiation, no brand recall.',
       },
       {
         number: '05',
         title: 'You depend on the algorithm',
         description:
-          "A change in Airbnb's ranking can tank your occupancy from one month to the next. You don't control your distribution.",
+          "A change in OTA rankings can affect your occupancy from one month to the next. Without your own channel, you don't control your distribution.",
       },
     ],
   },
@@ -66,7 +66,7 @@ export const copy = {
     description:
       "OTAout builds your direct booking website integrated with your PMS. It's not a template — it's a custom platform with your brand, your domain, your Stripe and your dashboard.",
     includes:
-      'All included: design, development, PMS integration, payment gateway, technical SEO, admin panel and ongoing support.',
+      'We handle everything: design, development, PMS integration, payment gateway, technical SEO, admin panel, and marketing strategy advisory to grow your direct channel.',
   },
   features: {
     title: 'Everything your platform includes',
@@ -102,9 +102,9 @@ export const copy = {
         icon: 'dashboard',
       },
       {
-        title: 'ADS + SEO management',
+        title: 'ADS + SEO (additional service)',
         description:
-          'Google Ads + Meta with automation based on real occupancy. Organic SEO positioning.',
+          'Google Ads + Meta Ads management and SEO positioning. Optional service with separate management fee and ad spend.',
         icon: 'chart',
       },
       {
@@ -137,16 +137,17 @@ export const copy = {
     subtitle:
       "We're not a generic agency. We're PMS specialists who also code.",
     points: [
-      'We know Smoobu, Beds24 and Hostaway inside out — their APIs, their limitations, their hacks.',
-      'We use the same stack (Next.js, Tailwind, Stripe) for our clients and for ourselves.',
-      "We don't make \"pretty\" websites that don't convert. We build booking platforms that generate revenue.",
-      "Ongoing support — we don't disappear after launch.",
+      'Integrations that work from day one — we know the Smoobu, Beds24 and Hostaway APIs inside out.',
+      'Battle-tested technology — the same stack we use for our own projects.',
+      'Platforms that generate revenue, not pretty websites nobody books through.',
+      'Ongoing support included — we keep optimizing after launch.',
+      'Growth strategy included — we advise you on digital marketing, positioning and acquisition so your direct channel grows month after month.',
     ],
   },
   contact: {
-    headline: 'How much have you paid Airbnb this year?',
+    headline: 'Free website analysis',
     subtitle:
-      'Tell us about your business and we\'ll show you how much you can recover.',
+      "Share your current website and within 48h you'll receive a report on what you're losing in commissions and how to recover it.",
     fields: {
       name: 'Name',
       email: 'Email',
@@ -156,9 +157,9 @@ export const copy = {
       pms: 'Current PMS',
       pmsOptions: ['Smoobu', 'Beds24', 'Other', "I don't have one"],
       message: 'Message (optional)',
-      submit: 'Send message',
+      submit: 'Get my free analysis',
     },
-    success: 'Message sent. We\'ll get back to you within 24 hours.',
+    success: 'Received. We\'ll get back to you within 24 hours.',
     whatsapp: 'Or message us on WhatsApp',
   },
   footer: {

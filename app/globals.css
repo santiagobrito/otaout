@@ -11,12 +11,23 @@
   --color-border: rgba(0, 0, 0, 0.08);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: #FAFAFA;
   color: #0F172A;
   font-family: var(--font-space-grotesk), sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+@layer base {
+  a:focus-visible,
+  button:focus-visible {
+    @apply outline-2 outline-offset-2 outline-[#E8440A] rounded;
+  }
 }
 
 @layer utilities {

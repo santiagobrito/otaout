@@ -36,13 +36,23 @@ export default function WhyUs() {
     <section
       id="por-que"
       ref={sectionRef}
-      className="px-6 py-24 md:px-12 md:py-32"
+      className="relative px-6 py-24 md:px-12 md:py-32"
     >
-      <div className="mx-auto max-w-3xl">
+      {/* Section divider */}
+      <div
+        className="absolute top-0 left-0 right-0 h-px"
+        style={{
+          background:
+            'linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.06) 50%, transparent 100%)',
+        }}
+      />
+
+      <div className="mx-auto max-w-[1280px]">
+       <div className="max-w-3xl">
         {/* Title */}
         <h2
           data-reveal
-          className="mb-4 font-syne text-3xl font-extrabold tracking-tight text-[#0F172A] opacity-0 translate-y-6 transition-all duration-700 ease-out md:text-5xl"
+          className="mb-4 font-syne text-[32px] font-bold leading-tight tracking-[-0.02em] text-[#0F172A] opacity-0 translate-y-6 transition-all duration-700 ease-out md:text-[48px]"
         >
           {t.whyUs.title}
         </h2>
@@ -88,6 +98,7 @@ export default function WhyUs() {
             </li>
           ))}
         </ul>
+       </div>
       </div>
     </section>
   );

@@ -26,15 +26,17 @@ export default function LanguageSwitcher({ variant = 'light' }: LanguageSwitcher
     <div className="flex items-center gap-1 text-sm font-medium">
       <button
         onClick={() => switchLocale('es')}
+        aria-label="Cambiar a español"
         className={`px-1.5 py-0.5 rounded transition-colors ${
           locale === 'es' ? activeColor : `${inactiveColor} ${hoverColor}`
         }`}
       >
         ES
       </button>
-      <span className={dividerColor}>|</span>
+      <span className={dividerColor} aria-hidden="true">|</span>
       <button
         onClick={() => switchLocale('en')}
+        aria-label="Switch to English"
         className={`px-1.5 py-0.5 rounded transition-colors ${
           locale === 'en' ? activeColor : `${inactiveColor} ${hoverColor}`
         }`}

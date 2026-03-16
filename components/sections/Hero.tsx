@@ -50,13 +50,13 @@ export default function Hero() {
     <section
       id="hero"
       ref={sectionRef}
-      className="relative flex min-h-screen flex-col items-center justify-center px-6 md:px-12"
+      className="relative flex min-h-[calc(100vh-72px)] flex-col items-center justify-center px-6 md:px-12"
       style={{
         background:
           'radial-gradient(ellipse at 85% 15%, rgba(232, 68, 10, 0.03) 0%, transparent 60%), #FAFAFA',
       }}
     >
-      <div className="mx-auto w-full max-w-[1280px] pt-24 pb-16 md:pt-32 md:pb-24">
+      <div className="mx-auto w-full max-w-[1280px] py-16 md:py-24">
         {/* Eyebrow */}
         <p
           data-reveal

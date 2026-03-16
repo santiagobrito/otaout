@@ -37,7 +37,7 @@ export default function CaseStudy() {
       ([entry]) => {
         if (entry.isIntersecting) {
           el.classList.add('opacity-100', 'translate-y-0');
-          el.classList.remove('opacity-0', 'translate-y-8');
+          el.classList.remove('opacity-0', 'translate-y-6');
           observer.unobserve(el);
         }
       },
@@ -81,7 +81,7 @@ export default function CaseStudy() {
     >
       <div
         ref={sectionRef}
-        className="mx-auto max-w-[1280px] px-6 md:px-12 opacity-0 translate-y-8 transition-all duration-700 ease-out"
+        className="mx-auto max-w-[1280px] px-6 md:px-12 opacity-0 translate-y-6 transition-all duration-700 ease-out"
       >
         <div className="mx-auto max-w-3xl">
           {/* Eyebrow */}
