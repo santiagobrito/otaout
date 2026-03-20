@@ -115,6 +115,8 @@ export default function Calculator() {
   const c = t.calculator;
   const sectionRef = useRef<HTMLElement>(null);
 
+  const [mode, setMode] = useState<'quick' | 'detailed'>('quick');
+  const [manualRevenue, setManualRevenue] = useState(500000);
   const [properties, setProperties] = useState(DEFAULTS.properties);
   const [avgNight, setAvgNight] = useState(DEFAULTS.avgNight);
   const [occupancy, setOccupancy] = useState(DEFAULTS.occupancy);
@@ -132,7 +134,9 @@ export default function Calculator() {
   const bookingsPerProperty = nightsPerProperty / avgStay;
   const totalBookings = bookingsPerProperty * properties;
   const revenuePerBooking = avgNight * avgStay;
-  const annualRevenue = totalBookings * revenuePerBooking;
+  const annualRevenue = mode === 'quick'
+    ? manualRevenue
+    : totalBookings * revenuePerBooking;
 
   // Current costs (without OTAout)
   const bookingRevenue = annualRevenue * (bookingShare / 100);
@@ -244,52 +248,79 @@ export default function Calculator() {
             data-reveal
             className="rounded-2xl border border-black/[0.06] bg-white p-6 shadow-sm opacity-0 translate-y-6 transition-all duration-700 delay-200 ease-out md:p-8"
           >
-            <div className="mb-8 flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#FCE8E2]">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E8440A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 20V10"/>
-                  <path d="M18 20V4"/>
-                  <path d="M6 20v-4"/>
-                </svg>
-              </div>
-              <h2 className="font-syne text-xl font-bold text-[#0F172A]">
-                {locale === 'en' ? 'Your numbers' : 'Tus datos'}
-              </h2>
+            {/* Mode toggle */}
+            <div className="mb-6 flex rounded-lg bg-[#FAFAFA] p-1">
+              <button
+                onClick={() => setMode('quick')}
+                className={`flex-1 rounded-md px-4 py-2.5 font-spaceGrotesk text-sm font-medium transition-all ${
+                  mode === 'quick'
+                    ? 'bg-white text-[#0F172A] shadow-sm'
+                    : 'text-[#64748B] hover:text-[#0F172A]'
+                }`}
+              >
+                {locale === 'en' ? 'Quick' : 'Rápido'}
+              </button>
+              <button
+                onClick={() => setMode('detailed')}
+                className={`flex-1 rounded-md px-4 py-2.5 font-spaceGrotesk text-sm font-medium transition-all ${
+                  mode === 'detailed'
+                    ? 'bg-white text-[#0F172A] shadow-sm'
+                    : 'text-[#64748B] hover:text-[#0F172A]'
+                }`}
+              >
+                {locale === 'en' ? 'Detailed' : 'Detallado'}
+              </button>
             </div>
 
             <div className="flex flex-col gap-7">
-              <Slider
-                label={c.form.properties}
-                value={properties}
-                onChange={setProperties}
-                min={1}
-                max={200}
-              />
-              <Slider
-                label={c.form.avgNight}
-                value={avgNight}
-                onChange={setAvgNight}
-                min={30}
-                max={500}
-                step={5}
-                suffix="€"
-              />
-              <Slider
-                label={c.form.occupancy}
-                value={occupancy}
-                onChange={setOccupancy}
-                min={20}
-                max={100}
-                suffix="%"
-              />
-              <Slider
-                label={c.form.avgStay}
-                value={avgStay}
-                onChange={setAvgStay}
-                min={1}
-                max={14}
-                suffix={locale === 'en' ? ' nights' : ' noches'}
-              />
+              {mode === 'quick' ? (
+                /* Quick mode: single revenue input */
+                <Slider
+                  label={locale === 'en' ? 'Annual revenue (€)' : 'Facturación anual (€)'}
+                  value={manualRevenue}
+                  onChange={setManualRevenue}
+                  min={50000}
+                  max={5000000}
+                  step={10000}
+                  suffix="€"
+                />
+              ) : (
+                /* Detailed mode: property-level inputs */
+                <>
+                  <Slider
+                    label={c.form.properties}
+                    value={properties}
+                    onChange={setProperties}
+                    min={1}
+                    max={200}
+                  />
+                  <Slider
+                    label={c.form.avgNight}
+                    value={avgNight}
+                    onChange={setAvgNight}
+                    min={30}
+                    max={500}
+                    step={5}
+                    suffix="€"
+                  />
+                  <Slider
+                    label={c.form.occupancy}
+                    value={occupancy}
+                    onChange={setOccupancy}
+                    min={20}
+                    max={100}
+                    suffix="%"
+                  />
+                  <Slider
+                    label={c.form.avgStay}
+                    value={avgStay}
+                    onChange={setAvgStay}
+                    min={1}
+                    max={14}
+                    suffix={locale === 'en' ? ' nights' : ' noches'}
+                  />
+                </>
+              )}
 
               {/* Divider */}
               <div className="h-px w-full bg-gradient-to-r from-transparent via-black/[0.08] to-transparent" />
@@ -400,9 +431,11 @@ export default function Calculator() {
                   <p className="font-syne text-3xl font-bold text-[#0F172A] md:text-4xl">
                     <AnimatedNumber value={Math.round(annualRevenue)} suffix="€" />
                   </p>
-                  <p className="mt-1 font-spaceGrotesk text-xs text-[#64748B]">
-                    {fmt(Math.round(totalBookings))} {locale === 'en' ? 'bookings/year' : 'reservas/año'} &middot; {fmt(Math.round(revenuePerBooking))}€/{locale === 'en' ? 'booking' : 'reserva'}
-                  </p>
+                  {mode === 'detailed' && (
+                    <p className="mt-1 font-spaceGrotesk text-xs text-[#64748B]">
+                      {fmt(Math.round(totalBookings))} {locale === 'en' ? 'bookings/year' : 'reservas/año'} &middot; {fmt(Math.round(revenuePerBooking))}€/{locale === 'en' ? 'booking' : 'reserva'}
+                    </p>
+                  )}
                 </div>
 
                 {/* Current OTA costs */}
