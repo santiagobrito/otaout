@@ -5,10 +5,10 @@ export const copy = {
   },
   hero: {
     eyebrow: 'For vacation rental managers using Smoobu, Beds24 and more',
-    headline_1: 'Airbnb takes 15%.',
+    headline_1: 'OTAs take 15%.',
     headline_2: 'Time to build your own channel.',
     subtitle:
-      'Your own direct booking platform — your brand, your domain, your data, zero commissions.',
+      'Your own direct booking platform — your brand, your domain, your data, and much higher margins.',
     cta_primary: 'I want my direct bookings',
     cta_secondary: 'See case study',
     stats: [
@@ -18,7 +18,7 @@ export const copy = {
     ],
   },
   problem: {
-    headline: "Airbnb helped you get started. But it doesn't have to keep 15% forever.",
+    headline: "Booking and Airbnb helped you get started. But they don't have to keep 15% forever.",
     paragraphs: [
       'OTAs have been a great springboard to fill your properties. But 15–20% commissions on every booking eat into your margin, and over time that limits your growth.',
       "The real issue is dependency: you don't own your guests' data, your brand isn't being built, and an algorithm change can affect your occupancy overnight. That's a business risk.",
@@ -38,7 +38,7 @@ export const copy = {
         number: '02',
         title: "Your PMS website doesn't convert",
         description:
-          "Smoobu and Beds24 offer a generic website that doesn't build trust. Your guests see it, but book through Airbnb because \"they trust it more\".",
+          "Smoobu and Beds24 offer a generic website that doesn't build trust. Your guests see it, but book through Booking or Airbnb because \"they trust it more\".",
       },
       {
         number: '03',
@@ -62,7 +62,7 @@ export const copy = {
   },
   solution: {
     eyebrow: 'The solution',
-    headline: 'Your direct booking platform. Ready in 4 weeks.',
+    headline: 'Your direct booking platform. Ready in 2 weeks.',
     description:
       "OTAout builds your direct booking website integrated with your PMS. It's not a template — it's a custom platform with your brand, your domain, your Stripe and your dashboard.",
     includes:
@@ -92,7 +92,7 @@ export const copy = {
       {
         title: 'Guest private area',
         description:
-          'Direct chat, extras, check-in, cancellations — without going through Airbnb.',
+          'Direct chat, extras, check-in, cancellations — without going through OTAs.',
         icon: 'user',
       },
       {
@@ -113,14 +113,20 @@ export const copy = {
           'Maximize every booking: extras at checkout (late check-in, airport transfer, crib) and pre-arrival (extra cleaning, welcome pack, late checkout).',
         icon: 'upselling',
       },
+      {
+        title: 'Custom development',
+        description:
+          "Need something not listed here? Custom integrations, specific features or tailored flows. We'll evaluate it and build it.",
+        icon: 'custom',
+      },
     ],
   },
   caseStudy: {
     eyebrow: 'Real case study',
     headline:
-      '42 apartments in Castelldefels. From paying 70,000€/year to Airbnb to having their own platform.',
+      '42 apartments in Castelldefels. From paying over 230,000€/year in OTA commissions to having their own platform.',
     description:
-      'Holiday Castelldefels managed 42 properties paying over 70,000€ annually in commissions. Today they have their own direct booking platform with full Smoobu integration.',
+      'Holiday Castelldefels managed 42 properties paying over 230,000€ annually in commissions. Today they have their own direct booking platform with full Smoobu integration.',
     specs: [
       '42 properties integrated',
       'Full Smoobu API integration',
@@ -129,7 +135,7 @@ export const copy = {
       'Custom admin panel',
       'Guest private area',
       'Automated Google Ads + Meta',
-      '1,390,607€ revenue in 2025',
+      '1,490,000€ revenue in 2025',
     ],
   },
   whyUs: {
@@ -217,7 +223,7 @@ export const copy = {
         {
           icon: 'brand',
           title: 'Build your own brand',
-          description: 'Your domain, your design, your identity. Every booking strengthens your business — not Airbnb\'s.',
+          description: 'Your domain, your design, your identity. Every booking strengthens your business — not the OTAs\'.',
         },
         {
           icon: 'data',
@@ -250,7 +256,7 @@ export const copy = {
   },
   footer: {
     tagline:
-      'Commission-free direct bookings for vacation rental managers.',
+      'Direct bookings with real margins for vacation rental managers.',
     legal: ['Privacy policy', 'Legal notice', 'Cookies'],
     copyright: '© 2026 OTAout. All rights reserved.',
   },

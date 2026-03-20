@@ -5,10 +5,10 @@ export const copy = {
   },
   hero: {
     eyebrow: 'Para gestores de alquiler vacacional con Smoobu, Beds24 y más',
-    headline_1: 'Airbnb se lleva el 15%.',
+    headline_1: 'Las OTAs se llevan el 15%.',
     headline_2: 'Es hora de construir tu propio canal.',
     subtitle:
-      'Tu propia plataforma de reservas directas — con tu marca, tu dominio, tus datos y cero comisiones.',
+      'Tu propia plataforma de reservas directas — con tu marca, tu dominio, tus datos y márgenes mucho mayores.',
     cta_primary: 'Quiero mis reservas directas',
     cta_secondary: 'Ver caso de éxito',
     stats: [
@@ -18,7 +18,7 @@ export const copy = {
     ],
   },
   problem: {
-    headline: 'Airbnb te ayudó a empezar. Pero no tiene por qué quedarse con el 15% para siempre.',
+    headline: 'Booking y Airbnb te ayudaron a empezar. Pero no tienen por qué quedarse con el 15% para siempre.',
     paragraphs: [
       'Las OTAs han sido un gran trampolín para llenar tus propiedades. Pero las comisiones del 15–20% reducen tu margen en cada reserva, y a largo plazo eso frena tu crecimiento.',
       'El verdadero problema es la dependencia: no tienes los datos de tus huéspedes, tu marca no se construye, y un cambio de algoritmo puede afectar tu ocupación de un mes a otro. Es un riesgo de negocio.',
@@ -38,7 +38,7 @@ export const copy = {
         number: '02',
         title: 'La web de tu PMS no convierte',
         description:
-          'Smoobu y Beds24 ofrecen una web genérica que no transmite confianza. Tus huéspedes la ven, pero reservan por Airbnb porque "se fían más".',
+          'Smoobu y Beds24 ofrecen una web genérica que no transmite confianza. Tus huéspedes la ven, pero reservan por Booking o Airbnb porque "se fían más".',
       },
       {
         number: '03',
@@ -62,7 +62,7 @@ export const copy = {
   },
   solution: {
     eyebrow: 'La solución',
-    headline: 'Tu plataforma de reservas directas. Lista en 4 semanas.',
+    headline: 'Tu plataforma de reservas directas. Lista en 2 semanas.',
     description:
       'OTAout construye tu web de reservas directas integrada con tu PMS. No es un template — es una plataforma a medida con tu marca, tu dominio, tu Stripe y tu panel de control.',
     includes:
@@ -92,7 +92,7 @@ export const copy = {
       {
         title: 'Área privada del huésped',
         description:
-          'Chat directo, extras, check-in, cancelaciones — sin pasar por Airbnb.',
+          'Chat directo, extras, check-in, cancelaciones — sin pasar por las OTAs.',
         icon: 'user',
       },
       {
@@ -113,14 +113,20 @@ export const copy = {
           'Maximiza cada reserva: extras al reservar (late check-in, transfer, cuna) y antes de llegar (limpieza extra, pack bienvenida, late checkout).',
         icon: 'upselling',
       },
+      {
+        title: 'Desarrollo a medida',
+        description:
+          '¿Necesitas algo que no está aquí? Integraciones custom, funcionalidades específicas o flujos a medida. Lo evaluamos y lo construimos.',
+        icon: 'custom',
+      },
     ],
   },
   caseStudy: {
     eyebrow: 'Caso de éxito real',
     headline:
-      '42 apartamentos en Castelldefels. De pagar 70.000€/año a Airbnb a tener su propia plataforma.',
+      '42 apartamentos en Castelldefels. De pagar más de 230.000€/año en comisiones OTAs a tener su propia plataforma.',
     description:
-      'Holiday Castelldefels gestionaba 42 propiedades pagando más de 70.000€ anuales en comisiones. Hoy tienen su propia plataforma de reservas directas con integración Smoobu completa.',
+      'Holiday Castelldefels gestionaba 42 propiedades pagando más de 230.000€ anuales en comisiones. Hoy tienen su propia plataforma de reservas directas con integración Smoobu completa.',
     specs: [
       '42 propiedades integradas',
       'Integración Smoobu API completa',
@@ -129,7 +135,7 @@ export const copy = {
       'Panel admin personalizado',
       'Área privada del huésped',
       'Google Ads + Meta automatizado',
-      '1.390.607€ facturación 2025',
+      '1.490.000€ facturación 2025',
     ],
   },
   whyUs: {
@@ -217,7 +223,7 @@ export const copy = {
         {
           icon: 'brand',
           title: 'Construye tu marca propia',
-          description: 'Tu dominio, tu diseño, tu identidad. Cada reserva refuerza tu negocio — no el de Airbnb.',
+          description: 'Tu dominio, tu diseño, tu identidad. Cada reserva refuerza tu negocio — no el de las OTAs.',
         },
         {
           icon: 'data',
@@ -250,7 +256,7 @@ export const copy = {
   },
   footer: {
     tagline:
-      'Reservas directas sin comisiones para gestores de alquiler vacacional.',
+      'Reservas directas con márgenes reales para gestores de alquiler vacacional.',
     legal: ['Política de privacidad', 'Aviso legal', 'Cookies'],
     copyright: '© 2026 OTAout. Todos los derechos reservados.',
   },
