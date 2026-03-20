@@ -178,7 +178,7 @@ export const copy = {
       bookingShare: '% reservas vía Booking',
       airbnbShare: '% reservas vía Airbnb',
       directShare: '% reservas directas actuales',
-      directGoal: '% reservas directas objetivo',
+      directGoal: '% reservas directas objetivo (año 1)',
     },
     results: {
       title: 'Tu potencial de ahorro',
