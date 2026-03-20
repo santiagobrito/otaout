@@ -12,9 +12,9 @@ export const copy = {
     cta_primary: 'Quiero mis reservas directas',
     cta_secondary: 'Ver caso de éxito',
     stats: [
-      { value: '0%', label: 'comisión por reserva directa' },
+      { value: '−15%', label: 'en comisiones por cada reserva directa' },
       { value: '+15%', label: 'margen neto desde el primer mes' },
-      { value: '4', label: 'semanas hasta el lanzamiento' },
+      { value: '2', label: 'semanas hasta el lanzamiento' },
     ],
   },
   problem: {

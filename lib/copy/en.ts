@@ -12,9 +12,9 @@ export const copy = {
     cta_primary: 'I want my direct bookings',
     cta_secondary: 'See case study',
     stats: [
-      { value: '0%', label: 'commission per direct booking' },
+      { value: '−15%', label: 'in commissions per direct booking' },
       { value: '+15%', label: 'net margin from month one' },
-      { value: '4', label: 'weeks to launch' },
+      { value: '2', label: 'weeks to launch' },
     ],
   },
   problem: {
