@@ -187,7 +187,7 @@ export const copy = {
       bookingCost: 'Comisiones Booking',
       airbnbCost: 'Comisiones Airbnb',
       totalOta: 'Total comisiones OTAs',
-      withDirect: 'Con tu canal directo',
+      withDirect: 'Si potenciamos tu canal directo con OTAout',
       newBookingCost: 'Comisiones Booking (reducidas)',
       newAirbnbCost: 'Comisiones Airbnb (reducidas)',
       otaoutCost: 'Coste OTAout',
