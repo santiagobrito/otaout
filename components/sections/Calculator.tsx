@@ -52,7 +52,7 @@ type SliderProps = {
 
 function Slider({ label, value, onChange, min, max, step = 1, suffix = '', prefix = '', accent = false, stepper = false }: SliderProps) {
   const pct = ((value - min) / (max - min)) * 100;
-  const stepSize = stepper ? (step > 1 ? step : 5) : step;
+  const stepSize = stepper ? (step > 1 ? step : 1) : step;
 
   return (
     <div className="group">
