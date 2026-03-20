@@ -47,10 +47,12 @@ type SliderProps = {
   suffix?: string;
   prefix?: string;
   accent?: boolean;
+  stepper?: boolean;
 };
 
-function Slider({ label, value, onChange, min, max, step = 1, suffix = '', prefix = '', accent = false }: SliderProps) {
+function Slider({ label, value, onChange, min, max, step = 1, suffix = '', prefix = '', accent = false, stepper = false }: SliderProps) {
   const pct = ((value - min) / (max - min)) * 100;
+  const stepSize = stepper ? (step > 1 ? step : 5) : step;
 
   return (
     <div className="group">
@@ -58,9 +60,31 @@ function Slider({ label, value, onChange, min, max, step = 1, suffix = '', prefi
         <label className="font-spaceGrotesk text-sm font-medium text-[#64748B]">
           {label}
         </label>
-        <span className={`font-syne text-lg font-bold ${accent ? 'text-[#E8440A]' : 'text-[#0F172A]'}`}>
-          {prefix}{fmt(value)}{suffix}
-        </span>
+        <div className="flex items-center gap-1.5">
+          {stepper && (
+            <button
+              type="button"
+              onClick={() => onChange(Math.max(min, value - stepSize))}
+              className="flex h-7 w-7 items-center justify-center rounded-md border border-black/10 bg-white text-[#64748B] transition-colors hover:border-[#E8440A]/40 hover:text-[#E8440A] active:scale-95"
+              aria-label="Decrease"
+            >
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2"><path d="M2 6h8"/></svg>
+            </button>
+          )}
+          <span className={`min-w-[3ch] text-center font-syne text-lg font-bold ${accent ? 'text-[#E8440A]' : 'text-[#0F172A]'}`}>
+            {prefix}{fmt(value)}{suffix}
+          </span>
+          {stepper && (
+            <button
+              type="button"
+              onClick={() => onChange(Math.min(max, value + stepSize))}
+              className="flex h-7 w-7 items-center justify-center rounded-md border border-black/10 bg-white text-[#64748B] transition-colors hover:border-[#E8440A]/40 hover:text-[#E8440A] active:scale-95"
+              aria-label="Increase"
+            >
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6 2v8M2 6h8"/></svg>
+            </button>
+          )}
+        </div>
       </div>
       <div className="relative">
         <input
@@ -274,16 +298,38 @@ export default function Calculator() {
 
             <div className="flex flex-col gap-7">
               {mode === 'quick' ? (
-                /* Quick mode: single revenue input */
-                <Slider
-                  label={locale === 'en' ? 'Annual revenue (€)' : 'Facturación anual (€)'}
-                  value={manualRevenue}
-                  onChange={setManualRevenue}
-                  min={50000}
-                  max={5000000}
-                  step={10000}
-                  suffix="€"
-                />
+                /* Quick mode: slider + editable input */
+                <div>
+                  <div className="mb-2 flex items-baseline justify-between">
+                    <label className="font-spaceGrotesk text-sm font-medium text-[#64748B]">
+                      {locale === 'en' ? 'Annual revenue' : 'Facturación anual'}
+                    </label>
+                    <div className="flex items-center gap-1">
+                      <input
+                        type="text"
+                        inputMode="numeric"
+                        value={fmt(manualRevenue)}
+                        onChange={(e) => {
+                          const raw = e.target.value.replace(/[^\d]/g, '');
+                          const num = parseInt(raw, 10);
+                          if (!isNaN(num)) setManualRevenue(Math.min(Math.max(num, 0), 10000000));
+                        }}
+                        className="w-28 text-right font-syne text-lg font-bold text-[#0F172A] bg-transparent border-b border-dashed border-[#E8440A]/40 outline-none focus:border-[#E8440A] transition-colors"
+                      />
+                      <span className="font-syne text-lg font-bold text-[#0F172A]">€</span>
+                    </div>
+                  </div>
+                  <input
+                    type="range"
+                    min={50000}
+                    max={5000000}
+                    step={10000}
+                    value={Math.min(manualRevenue, 5000000)}
+                    onChange={(e) => setManualRevenue(Number(e.target.value))}
+                    className="slider-input w-full cursor-pointer appearance-none bg-transparent"
+                    style={{ '--progress': `${((Math.min(manualRevenue, 5000000) - 50000) / (5000000 - 50000)) * 100}%` } as React.CSSProperties}
+                  />
+                </div>
               ) : (
                 /* Detailed mode: property-level inputs */
                 <>
@@ -310,6 +356,7 @@ export default function Calculator() {
                     min={20}
                     max={100}
                     suffix="%"
+                    stepper
                   />
                   <Slider
                     label={c.form.avgStay}
@@ -336,6 +383,7 @@ export default function Calculator() {
                 min={0}
                 max={100}
                 suffix="%"
+                stepper
               />
               <Slider
                 label={c.form.airbnbShare}
@@ -344,6 +392,7 @@ export default function Calculator() {
                 min={0}
                 max={100}
                 suffix="%"
+                stepper
               />
               <Slider
                 label={c.form.directShare}
@@ -355,6 +404,7 @@ export default function Calculator() {
                 min={0}
                 max={100}
                 suffix="%"
+                stepper
               />
 
               {/* Sum indicator */}
@@ -388,6 +438,7 @@ export default function Calculator() {
                 max={80}
                 suffix="%"
                 accent
+                stepper
               />
 
               {/* Calculate button */}
@@ -476,8 +527,8 @@ export default function Calculator() {
 
                   <p className="mb-4 font-spaceGrotesk text-xs text-[#64748B]">
                     {locale === 'en'
-                      ? `+${RATES.directGrowthPerYear}% direct bookings per year`
-                      : `+${RATES.directGrowthPerYear}% reservas directas cada año`}
+                      ? `+${RATES.directGrowthPerYear}% direct bookings per year (very conservative estimate)`
+                      : `+${RATES.directGrowthPerYear}% reservas directas cada año (estimación muy conservadora)`}
                   </p>
 
                   {/* Year cards */}
