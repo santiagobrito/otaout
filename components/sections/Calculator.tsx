@@ -241,7 +241,24 @@ export default function Calculator() {
         el.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     }, 100);
-  }, []);
+    // Track calculator usage (fire and forget)
+    fetch('/api/calculator-event', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        mode,
+        revenue: annualRevenue,
+        properties: mode === 'detailed' ? properties : null,
+        bookingShare,
+        airbnbShare,
+        directShare,
+        directGoal,
+        totalOtaCost,
+        totalSavings3y,
+      }),
+    }).catch(() => {});
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mode, annualRevenue, properties, bookingShare, airbnbShare, directShare, directGoal, totalOtaCost, totalSavings3y]);
 
   return (
     <section ref={sectionRef} className="px-6 py-16 md:px-12 md:py-24">
