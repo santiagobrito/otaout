@@ -287,47 +287,50 @@ export default function Calculator() {
               <Slider
                 label={c.form.bookingShare}
                 value={bookingShare}
-                onChange={(v) => {
-                  const remaining = 100 - airbnbShare - directShare;
-                  setBookingShare(Math.min(v, Math.max(0, remaining + bookingShare)));
-                  const newRemaining = 100 - Math.min(v, Math.max(0, remaining + bookingShare)) - airbnbShare;
-                  if (directShare > newRemaining + directShare) setDirectShare(Math.max(0, newRemaining + directShare));
-                }}
+                onChange={setBookingShare}
                 min={0}
-                max={100 - airbnbShare - directShare}
+                max={100}
                 suffix="%"
               />
               <Slider
                 label={c.form.airbnbShare}
                 value={airbnbShare}
-                onChange={(v) => {
-                  setAirbnbShare(Math.min(v, 100 - bookingShare - directShare));
-                }}
+                onChange={setAirbnbShare}
                 min={0}
-                max={100 - bookingShare - directShare}
+                max={100}
                 suffix="%"
               />
               <Slider
                 label={c.form.directShare}
                 value={directShare}
                 onChange={(v) => {
-                  const newDirect = Math.min(v, 100 - bookingShare - airbnbShare);
-                  setDirectShare(newDirect);
-                  if (directGoal < newDirect) setDirectGoal(newDirect);
+                  setDirectShare(v);
+                  if (directGoal < v) setDirectGoal(v);
                 }}
                 min={0}
-                max={100 - bookingShare - airbnbShare}
+                max={100}
                 suffix="%"
               />
 
               {/* Sum indicator */}
-              {bookingShare + airbnbShare + directShare < 100 && (
-                <p className="font-spaceGrotesk text-xs text-[#E8440A]">
-                  {locale === 'en'
-                    ? `${100 - bookingShare - airbnbShare - directShare}% unassigned — other channels (Vrbo, direct phone, etc.)`
-                    : `${100 - bookingShare - airbnbShare - directShare}% sin asignar — otros canales (Vrbo, teléfono, etc.)`}
-                </p>
-              )}
+              {(() => {
+                const total = bookingShare + airbnbShare + directShare;
+                if (total > 100) return (
+                  <p className="font-spaceGrotesk text-xs text-[#E8440A]">
+                    {locale === 'en'
+                      ? `Total exceeds 100% (${total}%). Adjust the values.`
+                      : `El total supera el 100% (${total}%). Ajusta los valores.`}
+                  </p>
+                );
+                if (total < 100) return (
+                  <p className="font-spaceGrotesk text-xs text-[#64748B]">
+                    {locale === 'en'
+                      ? `${100 - total}% via other channels (Vrbo, phone, etc.)`
+                      : `${100 - total}% vía otros canales (Vrbo, teléfono, etc.)`}
+                  </p>
+                );
+                return null;
+              })()}
 
               {/* Divider */}
               <div className="h-px w-full bg-gradient-to-r from-transparent via-black/[0.08] to-transparent" />
@@ -337,7 +340,7 @@ export default function Calculator() {
                 value={directGoal}
                 onChange={setDirectGoal}
                 min={directShare}
-                max={Math.min(80, directShare + bookingShare + airbnbShare)}
+                max={80}
                 suffix="%"
                 accent
               />
