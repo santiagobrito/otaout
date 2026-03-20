@@ -210,7 +210,7 @@ export const copy = {
     booking_rate_label: 'Booking.com',
     airbnb_rate_label: 'Airbnb (host-only)',
     otaout_rate_label: 'OTAout (solo web)',
-    payment_processing_label: 'Procesamiento pago directo',
+    payment_processing_label: 'Pasarela de pago (~2%, ej. Stripe)',
   },
   footer: {
     tagline:
