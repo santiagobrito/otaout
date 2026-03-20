@@ -9,13 +9,14 @@ import { copy as enCopy } from '@/lib/copy/en';
  * CONFIGURABLE RATES — edit these as needed
  * ───────────────────────────────────────────── */
 const RATES = {
-  booking: 0.15,           // 15% Booking.com commission
-  bookingPayment: 0.022,   // 2.2% Booking payment processing
-  airbnb: 0.155,           // 15.5% Airbnb host-only fee
-  otaoutCommission: 0.03,  // 3% OTAout commission on web bookings only
-  otaoutSetup: 1500,       // First year setup fee (€)
-  otaoutMonthly: 150,      // Monthly maintenance fee (€)
-  paymentProcessing: 0.02, // ~2% Stripe/payment gateway for direct bookings
+  booking: 0.15,              // 15% Booking.com commission
+  bookingPayment: 0.022,      // 2.2% Booking payment processing
+  airbnb: 0.155,              // 15.5% Airbnb host-only fee
+  otaoutCommission: 0.03,     // 3% OTAout commission on web bookings only
+  otaoutSetup: 1500,          // First year setup fee (€)
+  otaoutMonthly: 150,         // Monthly maintenance fee (€)
+  paymentProcessing: 0.02,    // ~2% Stripe/payment gateway for direct bookings
+  directGrowthPerYear: 5,     // +5% direct share per year (year 2, year 3)
 };
 
 /* ─────────────────────────────────────────────
@@ -133,39 +134,52 @@ export default function Calculator() {
   const revenuePerBooking = avgNight * avgStay;
   const annualRevenue = totalBookings * revenuePerBooking;
 
-  // Current costs
+  // Current costs (without OTAout)
   const bookingRevenue = annualRevenue * (bookingShare / 100);
   const airbnbRevenue = annualRevenue * (airbnbShare / 100);
   const bookingCost = bookingRevenue * (RATES.booking + RATES.bookingPayment);
   const airbnbCost = airbnbRevenue * RATES.airbnb;
   const totalOtaCost = bookingCost + airbnbCost;
 
-  // New scenario: shift some OTA bookings to direct
-  const directIncrease = Math.max(0, directGoal - directShareCurrent);
-  // Reduce proportionally from Booking and Airbnb
-  const otaTotal = bookingShare + airbnbShare;
-  const bookingReduction = otaTotal > 0 ? directIncrease * (bookingShare / otaTotal) : 0;
-  const airbnbReduction = otaTotal > 0 ? directIncrease * (airbnbShare / otaTotal) : 0;
-  const newBookingShare = Math.max(0, bookingShare - bookingReduction);
-  const newAirbnbShare = Math.max(0, airbnbShare - airbnbReduction);
-  const newDirectShare = directGoal;
+  // Multi-year projection helper
+  function calcYear(yearIndex: number) {
+    // yearIndex: 0 = year 1, 1 = year 2, 2 = year 3
+    const yearDirectGoal = Math.min(80, directGoal + yearIndex * RATES.directGrowthPerYear);
+    const directIncrease = Math.max(0, yearDirectGoal - directShareCurrent);
+    const otaTotal = bookingShare + airbnbShare;
+    const bReduction = otaTotal > 0 ? directIncrease * (bookingShare / otaTotal) : 0;
+    const aReduction = otaTotal > 0 ? directIncrease * (airbnbShare / otaTotal) : 0;
+    const yBookingShare = Math.max(0, bookingShare - bReduction);
+    const yAirbnbShare = Math.max(0, airbnbShare - aReduction);
 
-  const newBookingRevenue = annualRevenue * (newBookingShare / 100);
-  const newAirbnbRevenue = annualRevenue * (newAirbnbShare / 100);
-  const newDirectRevenue = annualRevenue * (newDirectShare / 100);
-  const newBookingCost = newBookingRevenue * (RATES.booking + RATES.bookingPayment);
-  const newAirbnbCost = newAirbnbRevenue * RATES.airbnb;
+    const yBookingCost = annualRevenue * (yBookingShare / 100) * (RATES.booking + RATES.bookingPayment);
+    const yAirbnbCost = annualRevenue * (yAirbnbShare / 100) * RATES.airbnb;
+    const yDirectRevenue = annualRevenue * (yearDirectGoal / 100);
+    const yOtaoutCommission = yDirectRevenue * RATES.otaoutCommission;
+    const yMaintenance = RATES.otaoutMonthly * 12;
+    const ySetup = yearIndex === 0 ? RATES.otaoutSetup : 0;
+    const yPayment = yDirectRevenue * RATES.paymentProcessing;
+    const yOtaoutTotal = ySetup + yMaintenance + yOtaoutCommission;
+    const yTotalCost = yBookingCost + yAirbnbCost + yOtaoutTotal + yPayment;
+    const ySavings = totalOtaCost - yTotalCost;
 
-  // OTAout costs
-  const otaoutCommissionCost = newDirectRevenue * RATES.otaoutCommission;
-  const otaoutAnnualMaintenance = RATES.otaoutMonthly * 12;
-  const otaoutFirstYearTotal = RATES.otaoutSetup + otaoutAnnualMaintenance + otaoutCommissionCost;
-  const paymentProcessingCost = newDirectRevenue * RATES.paymentProcessing;
+    return {
+      year: yearIndex + 1,
+      directPct: yearDirectGoal,
+      bookingCost: yBookingCost,
+      airbnbCost: yAirbnbCost,
+      otaoutSetup: ySetup,
+      otaoutMaintenance: yMaintenance,
+      otaoutCommission: yOtaoutCommission,
+      paymentProcessing: yPayment,
+      otaoutTotal: yOtaoutTotal,
+      totalCost: yTotalCost,
+      savings: ySavings,
+    };
+  }
 
-  const newTotalCost = newBookingCost + newAirbnbCost + otaoutFirstYearTotal + paymentProcessingCost;
-  const annualSavings = totalOtaCost - newTotalCost;
-  const savingsPercent = totalOtaCost > 0 ? (annualSavings / totalOtaCost) * 100 : 0;
-  const savingsPerProperty = properties > 0 ? annualSavings / properties : 0;
+  const years = [calcYear(0), calcYear(1), calcYear(2)];
+  const totalSavings3y = years.reduce((sum, y) => sum + y.savings, 0);
 
   // Scroll-reveal
   useEffect(() => {
@@ -414,92 +428,104 @@ export default function Calculator() {
                       <span className="font-spaceGrotesk text-sm font-semibold text-red-600">{c.results.totalOta}</span>
                       <span className="font-syne text-xl font-bold text-red-600">
                         <AnimatedNumber value={Math.round(totalOtaCost)} suffix="€" />
+                        <span className="font-spaceGrotesk text-sm font-medium text-red-400 ml-1">/{locale === 'en' ? 'year' : 'año'}</span>
                       </span>
                     </div>
                   </div>
                 </div>
 
-                {/* New scenario */}
+                {/* 3-year projection */}
                 <div className="rounded-2xl border border-emerald-100 bg-emerald-50/50 p-6 md:p-8 animate-fade-in-up animation-delay-200">
-                  <div className="mb-4 flex items-center gap-2">
+                  <div className="mb-5 flex items-center gap-2">
                     <div className="h-2 w-2 rounded-full bg-emerald-400" />
                     <h3 className="font-syne text-lg font-bold text-[#0F172A]">{c.results.withDirect}</h3>
                   </div>
-                  <div className="flex flex-col gap-2">
-                    <div className="flex items-center justify-between">
-                      <span className="font-spaceGrotesk text-sm text-[#64748B]">{c.results.newBookingCost}</span>
-                      <span className="font-spaceGrotesk text-sm font-semibold text-[#0F172A]">
-                        <AnimatedNumber value={Math.round(newBookingCost)} suffix="€" />
-                      </span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="font-spaceGrotesk text-sm text-[#64748B]">{c.results.newAirbnbCost}</span>
-                      <span className="font-spaceGrotesk text-sm font-semibold text-[#0F172A]">
-                        <AnimatedNumber value={Math.round(newAirbnbCost)} suffix="€" />
-                      </span>
-                    </div>
 
-                    {/* OTAout breakdown */}
-                    <div className="mt-2 border-t border-emerald-200/60 pt-3">
-                      <p className="mb-2 font-spaceGrotesk text-xs font-medium uppercase tracking-[0.1em] text-[#64748B]">
-                        {c.results.otaoutCost}
-                      </p>
-                      <div className="flex flex-col gap-1.5 pl-3">
-                        <div className="flex items-center justify-between">
-                          <span className="font-spaceGrotesk text-xs text-[#64748B]">{c.results.otaoutSetup}</span>
-                          <span className="font-spaceGrotesk text-xs font-medium text-[#0F172A]">{fmt(RATES.otaoutSetup)}€</span>
+                  <p className="mb-4 font-spaceGrotesk text-xs text-[#64748B]">
+                    {locale === 'en'
+                      ? `+${RATES.directGrowthPerYear}% direct bookings per year`
+                      : `+${RATES.directGrowthPerYear}% reservas directas cada año`}
+                  </p>
+
+                  {/* Year cards */}
+                  <div className="flex flex-col gap-4">
+                    {years.map((y) => (
+                      <div key={y.year} className="rounded-xl border border-emerald-200/40 bg-white/70 p-4">
+                        <div className="mb-3 flex items-center justify-between">
+                          <span className="font-syne text-sm font-bold text-[#0F172A]">
+                            {locale === 'en' ? `Year ${y.year}` : `Año ${y.year}`}
+                          </span>
+                          <span className="rounded-full bg-[#E8440A]/10 px-2.5 py-0.5 font-spaceGrotesk text-xs font-semibold text-[#E8440A]">
+                            {y.directPct}% {locale === 'en' ? 'direct' : 'directo'}
+                          </span>
                         </div>
-                        <div className="flex items-center justify-between">
-                          <span className="font-spaceGrotesk text-xs text-[#64748B]">{c.results.otaoutMonthly}</span>
-                          <span className="font-spaceGrotesk text-xs font-medium text-[#0F172A]">{fmt(RATES.otaoutMonthly)}€/m = {fmt(otaoutAnnualMaintenance)}€</span>
-                        </div>
-                        <div className="flex items-center justify-between">
-                          <span className="font-spaceGrotesk text-xs text-[#64748B]">{c.results.otaoutCommission} (3%)</span>
-                          <span className="font-spaceGrotesk text-xs font-medium text-[#0F172A]">{fmt(Math.round(otaoutCommissionCost))}€</span>
-                        </div>
-                        <div className="flex items-center justify-between">
-                          <span className="font-spaceGrotesk text-xs text-[#64748B]">{c.payment_processing_label} (~2%)</span>
-                          <span className="font-spaceGrotesk text-xs font-medium text-[#0F172A]">{fmt(Math.round(paymentProcessingCost))}€</span>
+
+                        <div className="flex flex-col gap-1.5">
+                          <div className="flex items-center justify-between">
+                            <span className="font-spaceGrotesk text-xs text-[#64748B]">Booking + Airbnb</span>
+                            <span className="font-spaceGrotesk text-xs font-medium text-[#0F172A]">{fmt(Math.round(y.bookingCost + y.airbnbCost))}€</span>
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <span className="font-spaceGrotesk text-xs text-[#64748B]">
+                              OTAout {y.year === 1 ? (locale === 'en' ? '(setup + maintenance + 3%)' : '(setup + mant. + 3%)') : (locale === 'en' ? '(maintenance + 3%)' : '(mant. + 3%)')}
+                            </span>
+                            <span className="font-spaceGrotesk text-xs font-medium text-[#0F172A]">{fmt(Math.round(y.otaoutTotal))}€</span>
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <span className="font-spaceGrotesk text-xs text-[#64748B]">{c.payment_processing_label}</span>
+                            <span className="font-spaceGrotesk text-xs font-medium text-[#0F172A]">{fmt(Math.round(y.paymentProcessing))}€</span>
+                          </div>
+                          <div className="mt-1.5 flex items-center justify-between border-t border-emerald-200/60 pt-2">
+                            <span className="font-spaceGrotesk text-xs font-semibold text-emerald-700">
+                              {c.results.savings}
+                            </span>
+                            <span className="font-syne text-base font-bold text-emerald-700">
+                              {y.savings > 0 ? '+' : ''}{fmt(Math.round(y.savings))}€
+                            </span>
+                          </div>
                         </div>
                       </div>
-                    </div>
-
-                    <div className="mt-2 flex items-center justify-between border-t border-emerald-200/60 pt-3">
-                      <span className="font-spaceGrotesk text-sm font-semibold text-emerald-700">{c.results.newTotal}</span>
-                      <span className="font-syne text-xl font-bold text-emerald-700">
-                        <AnimatedNumber value={Math.round(newTotalCost)} suffix="€" />
-                      </span>
-                    </div>
+                    ))}
                   </div>
                 </div>
 
-                {/* Savings highlight */}
-                {annualSavings > 0 && (
+                {/* Total 3-year savings highlight */}
+                {totalSavings3y > 0 && (
                   <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#0F172A] to-[#1e293b] p-6 text-white md:p-8 animate-fade-in-up animation-delay-300">
-                    {/* Decorative */}
                     <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-[#E8440A]/10 blur-2xl" />
                     <div className="absolute -bottom-4 -left-4 h-24 w-24 rounded-full bg-emerald-500/10 blur-2xl" />
 
                     <div className="relative">
-                      <p className="mb-1 font-spaceGrotesk text-sm font-medium text-white/60">{c.results.savings}</p>
+                      <p className="mb-1 font-spaceGrotesk text-sm font-medium text-white/60">
+                        {locale === 'en' ? 'Total savings in 3 years' : 'Ahorro total en 3 años'}
+                      </p>
                       <p className="mb-4 font-syne text-4xl font-extrabold md:text-5xl">
-                        <AnimatedNumber value={Math.round(annualSavings)} suffix="€" />
-                        <span className="ml-2 font-spaceGrotesk text-base font-medium text-emerald-400">
-                          /{locale === 'en' ? 'year' : 'año'}
-                        </span>
+                        <AnimatedNumber value={Math.round(totalSavings3y)} suffix="€" />
                       </p>
 
                       <div className="flex flex-wrap gap-6">
                         <div>
-                          <p className="font-spaceGrotesk text-xs text-white/50">{c.results.savingsPercent}</p>
+                          <p className="font-spaceGrotesk text-xs text-white/50">
+                            {locale === 'en' ? 'Year 1 savings' : 'Ahorro año 1'}
+                          </p>
                           <p className="font-syne text-2xl font-bold text-emerald-400">
-                            <AnimatedNumber value={Math.round(savingsPercent)} suffix="%" />
+                            <AnimatedNumber value={Math.round(years[0].savings)} suffix="€" />
                           </p>
                         </div>
                         <div>
-                          <p className="font-spaceGrotesk text-xs text-white/50">{c.results.perProperty}</p>
+                          <p className="font-spaceGrotesk text-xs text-white/50">
+                            {locale === 'en' ? 'Year 3 savings' : 'Ahorro año 3'}
+                          </p>
+                          <p className="font-syne text-2xl font-bold text-emerald-400">
+                            <AnimatedNumber value={Math.round(years[2].savings)} suffix="€" />
+                          </p>
+                        </div>
+                        <div>
+                          <p className="font-spaceGrotesk text-xs text-white/50">
+                            {locale === 'en' ? 'Per property / 3 years' : 'Por propiedad / 3 años'}
+                          </p>
                           <p className="font-syne text-2xl font-bold text-[#E8440A]">
-                            <AnimatedNumber value={Math.round(savingsPerProperty)} suffix="€" />
+                            <AnimatedNumber value={properties > 0 ? Math.round(totalSavings3y / properties) : 0} suffix="€" />
                           </p>
                         </div>
                       </div>
