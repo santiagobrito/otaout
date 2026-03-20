@@ -1,6 +1,6 @@
 export const copy = {
   nav: {
-    links: ['The problem', 'Solution', 'Features', 'Case study', 'Blog', 'Contact'],
+    links: ['The problem', 'Solution', 'Features', 'Case study', 'Calculator', 'Blog', 'Contact'],
     cta: "Let's talk",
   },
   hero: {
@@ -200,6 +200,42 @@ export const copy = {
       perProperty: 'Savings per property / year',
     },
     disclaimer: 'Figures are estimates based on publicly available platform commission rates. Actual results may vary depending on your market, property type and specific conditions.',
+    advantages: {
+      eyebrow: 'More than commission savings',
+      headline: 'What your direct channel with OTAout includes',
+      items: [
+        {
+          icon: 'search',
+          title: 'SEO optimized from day one',
+          description: 'Your website ranks on Google for searches like "apartment in [your destination]". Organic traffic you don\'t pay for.',
+        },
+        {
+          icon: 'ads',
+          title: 'Ready for Google Ads',
+          description: 'Structure, landing pages and tracking ready to launch paid campaigns and capture direct bookings from month one.',
+        },
+        {
+          icon: 'brand',
+          title: 'Build your own brand',
+          description: 'Your domain, your design, your identity. Every booking strengthens your business — not Airbnb\'s.',
+        },
+        {
+          icon: 'data',
+          title: 'Your data, your remarketing',
+          description: 'Emails, phone numbers, booking history. Run email marketing, retain guests and drive repeat bookings.',
+        },
+        {
+          icon: 'upsell',
+          title: 'Automated upselling',
+          description: 'Extras, experiences and add-on services in the booking flow. More revenue per guest, zero effort.',
+        },
+        {
+          icon: 'sync',
+          title: 'Real-time PMS integration',
+          description: 'Smoobu, Beds24, Hostaway. Synchronized availability, no overbookings, no manual management.',
+        },
+      ],
+    },
     cta: {
       headline: 'Want to see these numbers applied to your business?',
       subtitle: "We'll prepare a personalized analysis, no strings attached.",

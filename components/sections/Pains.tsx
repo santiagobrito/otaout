@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import { useLocale } from 'next-intl';
+import { Link as IntlLink } from '@/i18n/navigation';
 import { copy as esCopy } from '@/lib/copy/es';
 import { copy as enCopy } from '@/lib/copy/en';
 
@@ -83,6 +84,32 @@ export default function Pains() {
               </p>
             </div>
           ))}
+        </div>
+
+        {/* Calculator CTA */}
+        <div
+          data-reveal
+          className="mt-12 flex flex-col items-center gap-4 rounded-xl border border-[#E8440A]/15 bg-gradient-to-r from-[#FCE8E2]/50 to-[#FCE8E2]/20 px-6 py-8 text-center opacity-0 translate-y-6 transition-all duration-700 delay-500 ease-out sm:flex-row sm:justify-between sm:text-left md:px-10 md:py-8"
+        >
+          <div>
+            <p className="font-syne text-lg font-bold text-[#0F172A] md:text-xl">
+              {locale === 'en'
+                ? 'How much is this really costing you?'
+                : '¿Cuánto te está costando realmente?'}
+            </p>
+            <p className="mt-1 font-spaceGrotesk text-sm text-[#64748B]">
+              {locale === 'en'
+                ? 'Use our free calculator to find out in 30 seconds.'
+                : 'Descúbrelo en 30 segundos con nuestra calculadora gratuita.'}
+            </p>
+          </div>
+          <IntlLink
+            href="/calculadora"
+            className="shrink-0 inline-flex items-center gap-2 rounded-lg bg-[#E8440A] px-6 py-3 font-spaceGrotesk text-sm font-semibold text-white transition-all hover:bg-[#c9380a] hover:shadow-lg hover:shadow-[#E8440A]/20"
+          >
+            {locale === 'en' ? 'Calculate your savings' : 'Calcular mi ahorro'}
+            <span aria-hidden="true">&rarr;</span>
+          </IntlLink>
         </div>
       </div>
     </section>

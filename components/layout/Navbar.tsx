@@ -14,6 +14,7 @@ const NAV_HREFS = [
   '#solucion',
   '#features',
   '#caso-exito',
+  '/calculadora',
   '/blog',
   '#contacto',
 ];

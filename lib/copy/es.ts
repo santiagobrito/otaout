@@ -1,6 +1,6 @@
 export const copy = {
   nav: {
-    links: ['El problema', 'Solución', 'Features', 'Caso de éxito', 'Blog', 'Contacto'],
+    links: ['El problema', 'Solución', 'Features', 'Caso de éxito', 'Calculadora', 'Blog', 'Contacto'],
     cta: 'Hablamos',
   },
   hero: {
@@ -200,6 +200,42 @@ export const copy = {
       perProperty: 'Ahorro por propiedad / año',
     },
     disclaimer: 'Los datos son estimaciones basadas en comisiones públicas de cada plataforma. Los resultados reales pueden variar según tu mercado, tipología de propiedad y condiciones específicas.',
+    advantages: {
+      eyebrow: 'Más que ahorro en comisiones',
+      headline: 'Lo que incluye tu canal directo con OTAout',
+      items: [
+        {
+          icon: 'search',
+          title: 'SEO optimizado desde el día uno',
+          description: 'Tu web posiciona en Google para búsquedas como "apartamento en [tu destino]". Tráfico orgánico que no pagas.',
+        },
+        {
+          icon: 'ads',
+          title: 'Preparada para Google Ads',
+          description: 'Estructura, landings y tracking listos para lanzar campañas de pago y captar reservas directas desde el primer mes.',
+        },
+        {
+          icon: 'brand',
+          title: 'Construye tu marca propia',
+          description: 'Tu dominio, tu diseño, tu identidad. Cada reserva refuerza tu negocio — no el de Airbnb.',
+        },
+        {
+          icon: 'data',
+          title: 'Tus datos, tu remarketing',
+          description: 'Emails, teléfonos, historial de reservas. Haz email marketing, fideliza huéspedes y vende repetición.',
+        },
+        {
+          icon: 'upsell',
+          title: 'Upselling automatizado',
+          description: 'Extras, experiencias y servicios adicionales en el flujo de reserva. Más ingreso por huésped sin esfuerzo.',
+        },
+        {
+          icon: 'sync',
+          title: 'Integración PMS en tiempo real',
+          description: 'Smoobu, Beds24, Hostaway. Disponibilidad sincronizada, sin overbookings, sin gestión manual.',
+        },
+      ],
+    },
     cta: {
       headline: '¿Quieres ver estos números aplicados a tu negocio?',
       subtitle: 'Te preparamos un análisis personalizado sin compromiso.',

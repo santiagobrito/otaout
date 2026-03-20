@@ -590,6 +590,76 @@ export default function Calculator() {
           </div>
         </div>
 
+        {/* Advantages section */}
+        <div className="mt-16 md:mt-24">
+          <div className="mb-10 text-center" data-reveal>
+            <p className="mb-3 font-spaceGrotesk text-[11px] font-medium uppercase tracking-[0.2em] text-[#E8440A] opacity-0 translate-y-6 transition-all duration-700 ease-out">
+              {c.advantages.eyebrow}
+            </p>
+            <h2
+              data-reveal
+              className="font-syne text-[24px] font-bold leading-tight tracking-[-0.02em] text-[#0F172A] opacity-0 translate-y-6 transition-all duration-700 delay-100 ease-out md:text-[36px]"
+            >
+              {c.advantages.headline}
+            </h2>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" data-reveal>
+            {c.advantages.items.map((item, i) => (
+              <div
+                key={i}
+                data-reveal
+                className={`group rounded-xl border border-black/[0.06] bg-white p-6 transition-all duration-300 hover:shadow-md hover:border-[#E8440A]/20 opacity-0 translate-y-6 transition-all duration-700 ease-out`}
+                style={{ transitionDelay: `${150 + i * 80}ms` }}
+              >
+                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-[#FCE8E2] transition-colors group-hover:bg-[#E8440A]/15">
+                  {item.icon === 'search' && (
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E8440A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+                    </svg>
+                  )}
+                  {item.icon === 'ads' && (
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E8440A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M21 11V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h6"/>
+                      <path d="m12 12 4 10 1.7-4.3L22 16Z"/>
+                    </svg>
+                  )}
+                  {item.icon === 'brand' && (
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E8440A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M2 20h.01"/><path d="M7 20v-4"/><path d="M12 20v-8"/><path d="M17 20V8"/><path d="M22 4v16"/>
+                    </svg>
+                  )}
+                  {item.icon === 'data' && (
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E8440A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                      <circle cx="9" cy="7" r="4"/>
+                      <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                      <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                  )}
+                  {item.icon === 'upsell' && (
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E8440A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                    </svg>
+                  )}
+                  {item.icon === 'sync' && (
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E8440A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M21 2v6h-6"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/>
+                      <path d="M3 22v-6h6"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/>
+                    </svg>
+                  )}
+                </div>
+                <h3 className="mb-2 font-syne text-base font-bold text-[#0F172A]">
+                  {item.title}
+                </h3>
+                <p className="font-spaceGrotesk text-sm leading-relaxed text-[#64748B]">
+                  {item.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* CTA section */}
         <div
           data-reveal
