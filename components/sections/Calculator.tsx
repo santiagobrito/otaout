@@ -9,13 +9,13 @@ import { copy as enCopy } from '@/lib/copy/en';
  * CONFIGURABLE RATES — edit these as needed
  * ───────────────────────────────────────────── */
 const RATES = {
-  booking: 0.15,              // 15% Booking.com commission
-  bookingPayment: 0.022,      // 2.2% Booking payment processing
-  airbnb: 0.155,              // 15.5% Airbnb host-only fee
+  booking: 0.15,              // 15% Booking.com commission (excl. payment processing)
+  bookingPayment: 0.02,       // ~2% Payments by Booking.com (bank transfer payout fee)
+  airbnb: 0.155,              // 15.5% Airbnb host-only fee (payment processing included)
   otaoutCommission: 0.02,     // 2% OTAout commission on web bookings only
   otaoutSetup: 1500,          // First year setup fee (€)
   otaoutMonthly: 150,         // Monthly maintenance fee (€)
-  paymentProcessing: 0.02,    // ~2% Stripe/payment gateway for direct bookings
+  paymentProcessing: 0.022,   // ~2.2% Stripe blended (1.5% EU + 3.25% non-EU cards)
   directGrowthPerYear: 5,     // +5% direct share per year (year 2, year 3)
 };
 
@@ -574,7 +574,7 @@ export default function Calculator() {
                     {c.rates_note}
                   </p>
                   <div className="flex flex-wrap gap-x-6 gap-y-1 font-spaceGrotesk text-xs text-[#64748B]">
-                    <span>{c.booking_rate_label}: {(RATES.booking * 100)}% + {(RATES.bookingPayment * 100)}%</span>
+                    <span>{c.booking_rate_label}: {(RATES.booking * 100)}% + ~{(RATES.bookingPayment * 100)}%</span>
                     <span>{c.airbnb_rate_label}: {(RATES.airbnb * 100)}%</span>
                     <span>{c.otaout_rate_label}: {(RATES.otaoutCommission * 100)}%</span>
                     <span>{c.payment_processing_label}: ~{(RATES.paymentProcessing * 100)}%</span>

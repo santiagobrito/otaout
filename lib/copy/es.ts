@@ -207,10 +207,10 @@ export const copy = {
       whatsapp: 'O escríbenos por WhatsApp',
     },
     rates_note: 'Comisiones utilizadas',
-    booking_rate_label: 'Booking.com',
-    airbnb_rate_label: 'Airbnb (host-only)',
+    booking_rate_label: 'Booking.com (comisión + pago)',
+    airbnb_rate_label: 'Airbnb host-only (pago incluido)',
     otaout_rate_label: 'OTAout (solo web)',
-    payment_processing_label: 'Pasarela de pago (~2%, ej. Stripe)',
+    payment_processing_label: 'Pasarela de pago (ej. Stripe)',
   },
   footer: {
     tagline:
