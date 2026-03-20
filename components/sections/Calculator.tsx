@@ -120,11 +120,11 @@ export default function Calculator() {
   const [avgStay, setAvgStay] = useState(DEFAULTS.avgStay);
   const [bookingShare, setBookingShare] = useState(DEFAULTS.bookingShare);
   const [airbnbShare, setAirbnbShare] = useState(DEFAULTS.airbnbShare);
+  const [directShare, setDirectShare] = useState(DEFAULTS.directShare);
   const [directGoal, setDirectGoal] = useState(DEFAULTS.directGoal);
   const [showResults, setShowResults] = useState(false);
 
-  // Balance shares: when one changes, adjust others proportionally
-  const directShareCurrent = Math.max(0, 100 - bookingShare - airbnbShare);
+  const directShareCurrent = directShare;
 
   // Calculations
   const nightsPerProperty = 365 * (occupancy / 100);
@@ -288,35 +288,46 @@ export default function Calculator() {
                 label={c.form.bookingShare}
                 value={bookingShare}
                 onChange={(v) => {
-                  const remaining = 100 - v;
-                  if (airbnbShare > remaining) setAirbnbShare(remaining);
-                  setBookingShare(v);
+                  const remaining = 100 - airbnbShare - directShare;
+                  setBookingShare(Math.min(v, Math.max(0, remaining + bookingShare)));
+                  const newRemaining = 100 - Math.min(v, Math.max(0, remaining + bookingShare)) - airbnbShare;
+                  if (directShare > newRemaining + directShare) setDirectShare(Math.max(0, newRemaining + directShare));
                 }}
                 min={0}
-                max={100}
+                max={100 - airbnbShare - directShare}
                 suffix="%"
               />
               <Slider
                 label={c.form.airbnbShare}
                 value={airbnbShare}
                 onChange={(v) => {
-                  const remaining = 100 - bookingShare;
-                  setAirbnbShare(Math.min(v, remaining));
+                  setAirbnbShare(Math.min(v, 100 - bookingShare - directShare));
                 }}
                 min={0}
-                max={100 - bookingShare}
+                max={100 - bookingShare - directShare}
+                suffix="%"
+              />
+              <Slider
+                label={c.form.directShare}
+                value={directShare}
+                onChange={(v) => {
+                  const newDirect = Math.min(v, 100 - bookingShare - airbnbShare);
+                  setDirectShare(newDirect);
+                  if (directGoal < newDirect) setDirectGoal(newDirect);
+                }}
+                min={0}
+                max={100 - bookingShare - airbnbShare}
                 suffix="%"
               />
 
-              {/* Current direct share (computed) */}
-              <div className="flex items-baseline justify-between rounded-lg bg-[#FAFAFA] px-4 py-3">
-                <span className="font-spaceGrotesk text-sm font-medium text-[#64748B]">
-                  {c.form.directShare}
-                </span>
-                <span className="font-syne text-lg font-bold text-[#0F172A]">
-                  {directShareCurrent}%
-                </span>
-              </div>
+              {/* Sum indicator */}
+              {bookingShare + airbnbShare + directShare < 100 && (
+                <p className="font-spaceGrotesk text-xs text-[#E8440A]">
+                  {locale === 'en'
+                    ? `${100 - bookingShare - airbnbShare - directShare}% unassigned — other channels (Vrbo, direct phone, etc.)`
+                    : `${100 - bookingShare - airbnbShare - directShare}% sin asignar — otros canales (Vrbo, teléfono, etc.)`}
+                </p>
+              )}
 
               {/* Divider */}
               <div className="h-px w-full bg-gradient-to-r from-transparent via-black/[0.08] to-transparent" />
@@ -325,8 +336,8 @@ export default function Calculator() {
                 label={c.form.directGoal}
                 value={directGoal}
                 onChange={setDirectGoal}
-                min={directShareCurrent}
-                max={Math.min(80, directShareCurrent + bookingShare + airbnbShare)}
+                min={directShare}
+                max={Math.min(80, directShare + bookingShare + airbnbShare)}
                 suffix="%"
                 accent
               />
