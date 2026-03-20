@@ -12,7 +12,7 @@ const RATES = {
   booking: 0.15,              // 15% Booking.com commission
   bookingPayment: 0.022,      // 2.2% Booking payment processing
   airbnb: 0.155,              // 15.5% Airbnb host-only fee
-  otaoutCommission: 0.03,     // 3% OTAout commission on web bookings only
+  otaoutCommission: 0.02,     // 2% OTAout commission on web bookings only
   otaoutSetup: 1500,          // First year setup fee (€)
   otaoutMonthly: 150,         // Monthly maintenance fee (€)
   paymentProcessing: 0.02,    // ~2% Stripe/payment gateway for direct bookings
@@ -500,7 +500,7 @@ export default function Calculator() {
                           </div>
                           <div className="flex items-center justify-between">
                             <span className="font-spaceGrotesk text-xs text-[#64748B]">
-                              OTAout {y.year === 1 ? (locale === 'en' ? '(setup + maintenance + 3%)' : '(setup + mant. + 3%)') : (locale === 'en' ? '(maintenance + 3%)' : '(mant. + 3%)')}
+                              OTAout {y.year === 1 ? (locale === 'en' ? '(setup + maintenance + 2%)' : '(setup + mant. + 2%)') : (locale === 'en' ? '(maintenance + 2%)' : '(mant. + 2%)')}
                             </span>
                             <span className="font-spaceGrotesk text-xs font-medium text-[#0F172A]">{fmt(Math.round(y.otaoutTotal))}€</span>
                           </div>
@@ -553,14 +553,16 @@ export default function Calculator() {
                             <AnimatedNumber value={Math.round(years[2].savings)} suffix="€" />
                           </p>
                         </div>
-                        <div>
-                          <p className="font-spaceGrotesk text-xs text-white/50">
-                            {locale === 'en' ? 'Per property / 3 years' : 'Por propiedad / 3 años'}
-                          </p>
-                          <p className="font-syne text-2xl font-bold text-[#E8440A]">
-                            <AnimatedNumber value={properties > 0 ? Math.round(totalSavings3y / properties) : 0} suffix="€" />
-                          </p>
-                        </div>
+                        {mode === 'detailed' && (
+                          <div>
+                            <p className="font-spaceGrotesk text-xs text-white/50">
+                              {locale === 'en' ? 'Per property / 3 years' : 'Por propiedad / 3 años'}
+                            </p>
+                            <p className="font-syne text-2xl font-bold text-[#E8440A]">
+                              <AnimatedNumber value={properties > 0 ? Math.round(totalSavings3y / properties) : 0} suffix="€" />
+                            </p>
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>

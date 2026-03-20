@@ -193,7 +193,7 @@ export const copy = {
       otaoutCost: 'Coste OTAout',
       otaoutSetup: 'Setup primer año',
       otaoutMonthly: 'Mantenimiento mensual',
-      otaoutCommission: 'Comisión sobre reservas web',
+      otaoutCommission: 'Comisión sobre reservas web (2%)',
       newTotal: 'Coste total nuevo modelo',
       savings: 'Ahorro anual neto',
       savingsPercent: 'Ahorro sobre comisiones actuales',
