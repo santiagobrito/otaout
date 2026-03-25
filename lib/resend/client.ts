@@ -1,8 +1,14 @@
-import { Resend } from 'resend';
+import nodemailer from "nodemailer";
 
-function getResend() {
-  return new Resend(process.env.RESEND_API_KEY);
-}
+const transporter = nodemailer.createTransport({
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true,
+  auth: {
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS,
+  },
+});
 
 type LeadData = {
   name: string;
@@ -14,11 +20,11 @@ type LeadData = {
 };
 
 export async function sendLeadNotification(data: LeadData) {
-  const fromEmail = process.env.RESEND_FROM_EMAIL;
-  const toEmail = process.env.RESEND_TO_EMAIL;
+  const fromEmail = process.env.SMTP_USER;
+  const toEmail = process.env.SMTP_TO_EMAIL || fromEmail;
 
-  if (!fromEmail || !toEmail) {
-    throw new Error('Missing RESEND_FROM_EMAIL or RESEND_TO_EMAIL env vars');
+  if (!fromEmail || !process.env.SMTP_PASS) {
+    throw new Error("Missing SMTP_USER or SMTP_PASS env vars");
   }
 
   const htmlBody = `
@@ -39,7 +45,7 @@ export async function sendLeadNotification(data: LeadData) {
           <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-weight: 600; color: #555;">Sitio web</td>
           <td style="padding: 10px 0; border-bottom: 1px solid #eee;"><a href="${data.site}" style="color: #E8440A;">${data.site}</a></td>
         </tr>`
-            : ''
+            : ""
         }
         <tr>
           <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-weight: 600; color: #555;">Propiedades</td>
@@ -55,22 +61,18 @@ export async function sendLeadNotification(data: LeadData) {
           <td style="padding: 10px 0; font-weight: 600; color: #555; vertical-align: top;">Mensaje</td>
           <td style="padding: 10px 0; white-space: pre-wrap;">${data.message}</td>
         </tr>`
-            : ''
+            : ""
         }
       </table>
     </div>
   `;
 
-  const { error } = await getResend().emails.send({
-    from: fromEmail,
+  await transporter.sendMail({
+    from: `OTAout <${fromEmail}>`,
     to: toEmail,
     subject: `Nuevo lead OTAout: ${data.name}`,
     html: htmlBody,
   });
-
-  if (error) {
-    throw new Error(`Resend error: ${error.message}`);
-  }
 
   return { success: true };
 }
