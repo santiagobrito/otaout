@@ -262,7 +262,7 @@ export default function ContactForm() {
 
           {/* WhatsApp CTA */}
           <a
-            href="https://wa.me/34XXXXXXXXX"
+            href="https://wa.me/34642132279"
             target="_blank"
             rel="noopener noreferrer"
             className="mt-4 flex items-center justify-center gap-2 font-spaceGrotesk text-sm text-[#64748B] transition-colors hover:text-[#25D366]"

@@ -1,7 +1,7 @@
 import { setRequestLocale } from "next-intl/server";
 import { Metadata } from "next";
 import Link from "next/link";
-import { getAllArticles } from "@/lib/blog/articles";
+import { getAllArticles, getSlugForLocale } from "@/lib/blog/articles";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
@@ -75,10 +75,11 @@ export default async function BlogPage({ params }: Props) {
         <section className="mx-auto max-w-[1280px] px-6 py-12 md:px-12 md:py-16">
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {articles.map((article) => {
-              const href = `/${locale === "es" ? "" : "en/"}blog/${article.slug}`;
+              const articleSlug = getSlugForLocale(article, locale);
+              const href = `/${locale === "es" ? "" : "en/"}blog/${articleSlug}`;
               return (
                 <Link
-                  key={article.slug}
+                  key={articleSlug}
                   href={href}
                   className="group flex flex-col overflow-hidden rounded-xl border border-black/5 bg-white transition-shadow hover:shadow-lg"
                 >

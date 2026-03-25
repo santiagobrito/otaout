@@ -136,7 +136,7 @@ export default async function LocaleLayout({ children, params }: Props) {
       url: `${BASE_URL}/#contacto`,
     },
     sameAs: [
-      "https://wa.me/34XXXXXXXXX",
+      "https://wa.me/34642132279",
     ],
   };
 

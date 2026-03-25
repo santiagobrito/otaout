@@ -40,7 +40,7 @@ export default function Footer() {
           </div>
           <div className="flex items-center gap-4">
             <a
-              href="https://wa.me/34XXXXXXXXX"
+              href="https://wa.me/34642132279"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 text-xs text-[#888888] transition-colors hover:text-[#25D366]"

@@ -1,10 +1,10 @@
 import type { MetadataRoute } from "next";
-import { getAllSlugs } from "@/lib/blog/articles";
+import { getAllArticles } from "@/lib/blog/articles";
 
 const BASE_URL = "https://otaout.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const slugs = getAllSlugs();
+  const allArticles = getAllArticles();
 
   const staticPages: MetadataRoute.Sitemap = [
     {
@@ -57,28 +57,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  const articlePages: MetadataRoute.Sitemap = slugs.flatMap((slug) => [
+  const articlePages: MetadataRoute.Sitemap = allArticles.flatMap((article) => [
     {
-      url: `${BASE_URL}/blog/${slug}`,
+      url: `${BASE_URL}/blog/${article.slug.es}`,
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: 0.6,
       alternates: {
         languages: {
-          es: `${BASE_URL}/blog/${slug}`,
-          en: `${BASE_URL}/en/blog/${slug}`,
+          es: `${BASE_URL}/blog/${article.slug.es}`,
+          en: `${BASE_URL}/en/blog/${article.slug.en}`,
         },
       },
     },
     {
-      url: `${BASE_URL}/en/blog/${slug}`,
+      url: `${BASE_URL}/en/blog/${article.slug.en}`,
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: 0.5,
       alternates: {
         languages: {
-          es: `${BASE_URL}/blog/${slug}`,
-          en: `${BASE_URL}/en/blog/${slug}`,
+          es: `${BASE_URL}/blog/${article.slug.es}`,
+          en: `${BASE_URL}/en/blog/${article.slug.en}`,
         },
       },
     },

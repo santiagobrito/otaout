@@ -2,7 +2,7 @@ import { setRequestLocale } from "next-intl/server";
 import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getArticleBySlug, getAllSlugs } from "@/lib/blog/articles";
+import { getArticleBySlug, getAllSlugs, getSlugForLocale } from "@/lib/blog/articles";
 import { routing } from "@/i18n/routing";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -14,9 +14,9 @@ type Props = {
 };
 
 export function generateStaticParams() {
-  const slugs = getAllSlugs();
   const params: { locale: string; slug: string }[] = [];
   for (const locale of routing.locales) {
+    const slugs = getAllSlugs(locale);
     for (const slug of slugs) {
       params.push({ locale, slug });
     }
@@ -26,15 +26,15 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
-  const article = getArticleBySlug(slug);
+  const article = getArticleBySlug(slug, locale);
   if (!article) return {};
 
   const isEs = locale === "es";
   const title = isEs ? article.title.es : article.title.en;
   const description = isEs ? article.excerpt.es : article.excerpt.en;
   const url = isEs
-    ? `${BASE_URL}/blog/${slug}`
-    : `${BASE_URL}/en/blog/${slug}`;
+    ? `${BASE_URL}/blog/${article.slug.es}`
+    : `${BASE_URL}/en/blog/${article.slug.en}`;
 
   return {
     title: `${title} | OTAout`,
@@ -42,8 +42,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     alternates: {
       canonical: url,
       languages: {
-        es: `${BASE_URL}/blog/${slug}`,
-        en: `${BASE_URL}/en/blog/${slug}`,
+        es: `${BASE_URL}/blog/${article.slug.es}`,
+        en: `${BASE_URL}/en/blog/${article.slug.en}`,
       },
     },
     openGraph: {
@@ -62,7 +62,7 @@ export default async function ArticlePage({ params }: Props) {
   const { locale, slug } = await params;
   setRequestLocale(locale);
 
-  const article = getArticleBySlug(slug);
+  const article = getArticleBySlug(slug, locale);
   if (!article) notFound();
 
   const isEs = locale === "es";
@@ -93,8 +93,8 @@ export default async function ArticlePage({ params }: Props) {
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": isEs
-        ? `${BASE_URL}/blog/${slug}`
-        : `${BASE_URL}/en/blog/${slug}`,
+        ? `${BASE_URL}/blog/${article.slug.es}`
+        : `${BASE_URL}/en/blog/${article.slug.en}`,
     },
   };
 

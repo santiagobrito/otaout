@@ -747,7 +747,7 @@ export default function Calculator() {
               {c.cta.button}
             </a>
             <a
-              href="https://wa.me/34XXXXXXXXX"
+              href="https://wa.me/34642132279"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 font-spaceGrotesk text-sm text-[#64748B] transition-colors hover:text-[#25D366]"
