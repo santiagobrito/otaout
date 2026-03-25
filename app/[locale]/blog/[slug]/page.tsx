@@ -2,7 +2,7 @@ import { setRequestLocale } from "next-intl/server";
 import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getArticleBySlug, getAllSlugs, getSlugForLocale } from "@/lib/blog/articles";
+import { getArticleBySlug, getAllSlugs } from "@/lib/blog/articles";
 import { routing } from "@/i18n/routing";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
