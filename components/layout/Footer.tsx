@@ -6,9 +6,27 @@ import LanguageSwitcher from '@/components/shared/LanguageSwitcher';
 import { copy as esCopy } from '@/lib/copy/es';
 import { copy as enCopy } from '@/lib/copy/en';
 
+const legalRoutes = {
+  es: [
+    { label: 'Política de privacidad', href: '/privacidad' },
+    { label: 'Aviso legal', href: '/aviso-legal' },
+    { label: 'Cookies', href: '/cookies' },
+  ],
+  en: [
+    { label: 'Privacy policy', href: '/en/privacidad' },
+    { label: 'Legal notice', href: '/en/aviso-legal' },
+    { label: 'Cookies', href: '/en/cookies' },
+  ],
+};
+
 export default function Footer() {
   const locale = useLocale();
   const t = locale === 'en' ? enCopy : esCopy;
+  const routes = locale === 'en' ? legalRoutes.en : legalRoutes.es;
+
+  function openCookieSettings() {
+    window.dispatchEvent(new CustomEvent('open-cookie-settings'));
+  }
 
   return (
     <footer className="border-t border-white/10 bg-[#0F172A]">
@@ -28,15 +46,21 @@ export default function Footer() {
         {/* Bottom row: Legal + Copyright */}
         <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
           <div className="flex flex-wrap items-center gap-4">
-            {t.footer.legal.map((label) => (
+            {routes.map((item) => (
               <a
-                key={label}
-                href="#"
+                key={item.href}
+                href={item.href}
                 className="text-xs text-[#888888] transition-colors hover:text-[#f5f5f2]"
               >
-                {label}
+                {item.label}
               </a>
             ))}
+            <button
+              onClick={openCookieSettings}
+              className="text-xs text-[#888888] transition-colors hover:text-[#f5f5f2]"
+            >
+              {locale === 'en' ? 'Cookie settings' : 'Configurar cookies'}
+            </button>
           </div>
           <div className="flex items-center gap-4">
             <a

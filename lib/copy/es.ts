@@ -265,5 +265,6 @@ export const copy = {
       'Usamos cookies para mejorar tu experiencia y analizar el tráfico del sitio. Al aceptar, consientes el uso de cookies analíticas.',
     accept: 'Aceptar',
     decline: 'Rechazar',
+    settings: 'Configurar cookies',
   },
 }

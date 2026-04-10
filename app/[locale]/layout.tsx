@@ -190,6 +190,53 @@ export default async function LocaleLayout({ children, params }: Props) {
   return (
     <html lang={locale} className={`${outfit.variable} ${inter.variable} ${jetbrainsMono.variable} scroll-smooth`}>
       <head>
+        {/* Google Consent Mode v2 — must load before any gtag/GTM script */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+
+              gtag('consent', 'default', {
+                'ad_storage': 'denied',
+                'ad_user_data': 'denied',
+                'ad_personalization': 'denied',
+                'analytics_storage': 'denied',
+                'functionality_storage': 'granted',
+                'personalization_storage': 'denied',
+                'security_storage': 'granted',
+                'wait_for_update': 500
+              });
+
+              gtag('set', 'url_passthrough', true);
+              gtag('set', 'ads_data_redaction', true);
+
+              try {
+                var c = JSON.parse(localStorage.getItem('otaout-consent'));
+                if (c) {
+                  gtag('consent', 'update', {
+                    'analytics_storage': c.analytics ? 'granted' : 'denied',
+                    'ad_storage': c.marketing ? 'granted' : 'denied',
+                    'ad_user_data': c.marketing ? 'granted' : 'denied',
+                    'ad_personalization': c.marketing ? 'granted' : 'denied'
+                  });
+                }
+              } catch(e) {}
+            `,
+          }}
+        />
+        {/* Google Tag Manager */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','GTM-5XXQFD29');
+            `,
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -204,6 +251,15 @@ export default async function LocaleLayout({ children, params }: Props) {
         />
       </head>
       <body className="antialiased pt-[72px]">
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-5XXQFD29"
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          />
+        </noscript>
         <NextIntlClientProvider messages={messages}>
           {children}
         </NextIntlClientProvider>

@@ -6,6 +6,14 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
+        disallow: [
+          "/aviso-legal",
+          "/privacidad",
+          "/cookies",
+          "/en/aviso-legal",
+          "/en/privacidad",
+          "/en/cookies",
+        ],
       },
     ],
     sitemap: "https://otaout.com/sitemap.xml",

@@ -265,5 +265,6 @@ export const copy = {
       'We use cookies to improve your experience and analyze site traffic. By accepting, you consent to the use of analytics cookies.',
     accept: 'Accept',
     decline: 'Decline',
+    settings: 'Cookie settings',
   },
 }
