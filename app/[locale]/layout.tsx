@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { setRequestLocale, getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
 import { routing } from "@/i18n/routing";
+import CookieConsent from "@/components/shared/CookieConsent";
 import "../globals.css";
 
 const BASE_URL = "https://otaout.com";
@@ -262,6 +263,7 @@ export default async function LocaleLayout({ children, params }: Props) {
         </noscript>
         <NextIntlClientProvider messages={messages}>
           {children}
+          <CookieConsent />
         </NextIntlClientProvider>
       </body>
     </html>
