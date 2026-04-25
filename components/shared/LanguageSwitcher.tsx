@@ -2,6 +2,7 @@
 
 import { useLocale } from 'next-intl';
 import { useRouter, usePathname } from '@/i18n/navigation';
+import { translateBlogSlug } from '@/lib/blog/slug-pairs';
 
 interface LanguageSwitcherProps {
   variant?: 'light' | 'dark';
@@ -14,6 +15,26 @@ export default function LanguageSwitcher({ variant = 'light' }: LanguageSwitcher
 
   function switchLocale(newLocale: 'es' | 'en') {
     if (newLocale === locale) return;
+
+    // Blog article pages have different slugs per locale — translate the slug
+    // before navigating so we don't land on a 404. `usePathname()` from
+    // next-intl returns the path with the locale prefix stripped.
+    const blogMatch = pathname.match(/^\/blog\/([^/]+)$/);
+    if (blogMatch) {
+      const translated = translateBlogSlug(
+        blogMatch[1],
+        locale as 'es' | 'en',
+        newLocale
+      );
+      if (translated) {
+        router.replace(`/blog/${translated}`, { locale: newLocale });
+        return;
+      }
+      // Unknown slug → fall back to the blog index in the target locale
+      router.replace('/blog', { locale: newLocale });
+      return;
+    }
+
     router.replace(pathname, { locale: newLocale });
   }
 

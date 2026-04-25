@@ -8,6 +8,8 @@ export interface Article {
   category: { es: string; en: string };
 }
 
+// When adding/renaming an article, also update `./slug-pairs.ts` so the
+// LanguageSwitcher can translate the slug when toggling locale.
 export const articles: Article[] = [
   {
     slug: { es: "reducir-dependencia-airbnb", en: "reduce-airbnb-dependency" },
