@@ -83,7 +83,7 @@ otaout/
 - **Asesoramiento en marketing** SÍ incluido en el servicio base
 - **Módulo de upselling** como feature (extras al reservar + pre-estancia)
 - **Blog**: 20 artículos SEO, 1500-2500 palabras, datos reales, accionables
-- **Caso de éxito**: Holiday Castelldefels (42 propiedades, 1.39M€ facturación 2025)
+- **Caso de éxito (anonimizado)**: gestor profesional en la Costa Catalana (42 propiedades, 1.39M€ facturación 2025) — identidad reservada bajo NDA en materiales públicos
 - **Honeypot anti-spam**: campo oculto "website" en el formulario
 
 ## Variables de Entorno (EasyPanel)

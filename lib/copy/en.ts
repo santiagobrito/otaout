@@ -124,9 +124,9 @@ export const copy = {
   caseStudy: {
     eyebrow: 'Real case study',
     headline:
-      '42 apartments in Castelldefels. From paying over 230,000€/year in OTA commissions to having their own platform.',
+      '42 apartments on the Catalan Coast. From paying over 230,000€/year in OTA commissions to having their own platform.',
     description:
-      'Holiday Castelldefels managed 42 properties paying over 230,000€ annually in commissions. Today they have their own direct booking platform with full Smoobu integration.',
+      'A professional manager on the Catalan Coast operated 42 properties paying over 230,000€ annually in commissions. Today they have their own direct booking platform with full Smoobu integration.',
     specs: [
       '42 properties integrated',
       'Full Smoobu API integration',

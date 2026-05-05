@@ -124,9 +124,9 @@ export const copy = {
   caseStudy: {
     eyebrow: 'Caso de éxito real',
     headline:
-      '42 apartamentos en Castelldefels. De pagar más de 230.000€/año en comisiones OTAs a tener su propia plataforma.',
+      '42 apartamentos en la Costa Catalana. De pagar más de 230.000€/año en comisiones OTAs a tener su propia plataforma.',
     description:
-      'Holiday Castelldefels gestionaba 42 propiedades pagando más de 230.000€ anuales en comisiones. Hoy tienen su propia plataforma de reservas directas con integración Smoobu completa.',
+      'Un gestor profesional en la Costa Catalana operaba 42 propiedades pagando más de 230.000€ anuales en comisiones. Hoy tiene su propia plataforma de reservas directas con integración Smoobu completa.',
     specs: [
       '42 propiedades integradas',
       'Integración Smoobu API completa',
